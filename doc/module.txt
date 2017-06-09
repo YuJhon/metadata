@@ -1,0 +1,14 @@
+模块说明
+
+- core
+
+核心模块。用于接口的定义。
+
+- mysql
+
+- sqlserver
+
+- oracle
+
+- mongodb
+
