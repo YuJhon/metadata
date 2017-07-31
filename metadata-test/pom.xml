@@ -9,14 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>metadata-core</artifactId>
+    <artifactId>metadata-test</artifactId>
 
-    <dependencies>
-        <!--============================== self ==============================-->
-        <dependency>
-            <groupId>com.ryo</groupId>
-            <artifactId>metadata-util</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>
