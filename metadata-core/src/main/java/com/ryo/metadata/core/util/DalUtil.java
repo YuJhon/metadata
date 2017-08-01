@@ -7,18 +7,12 @@ import java.sql.*;
  */
 public class DalUtil {
 
-//    protected static String dbClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-//
-//    static {
-//        try {
-//            /**
-//             * 保证被加载到 JVM 中
-//             */
-//            Class.forName(dbClassName);
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//    }
+    private static class JdbcKey {
+        private static final String jdbc_driverClassName = "jdbc.driverClassName";
+        private static final String jdbc_url = "jdbc.url";
+        private static final String jdbc_username = "jdbc.username";
+        private static final String jdbc_password = "jdbc.password";
+    }
 
     public static Connection getConnection() {
         Connection connnection = null;
@@ -30,19 +24,14 @@ public class DalUtil {
                     db_username,
                     db_password);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return connnection;
     }
 
-    public static ResultSet query(String QueryStr) {
-        ResultSet set = findForResultSet(QueryStr);
-        return set;
-    }
-
     /**
      * 执行SQL脚本
+     *
      * @param sql
      * @throws SQLException
      */
@@ -52,7 +41,12 @@ public class DalUtil {
         statement.execute(sql);
     }
 
-    public static ResultSet findForResultSet(String sql) {
+    /**
+     * 查询
+     * @param sql
+     * @return
+     */
+    public static ResultSet query(String sql) {
         Connection conn = null;
         conn = getConnection();
         ResultSet rs = null;

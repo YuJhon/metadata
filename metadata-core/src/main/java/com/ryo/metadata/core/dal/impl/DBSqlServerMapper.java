@@ -1,5 +1,6 @@
 package com.ryo.metadata.core.dal.impl;
 
+import com.ryo.medata.util.util.PathUtil;
 import com.ryo.metadata.core.constant.DBClassNameConstant;
 import com.ryo.metadata.core.dal.DBMapper;
 import com.ryo.metadata.core.domain.MetaField;
@@ -19,9 +20,12 @@ import java.util.List;
  */
 public class DBSqlServerMapper implements DBMapper {
 
+    private static final String FILE_PATH = PathUtil.getRootPath()+"/metadata-core/src/main/resources/jdbc_sqlserver.properties";
+
     static {
         try {
             Class.forName(DBClassNameConstant.SQL_SERVER);
+//            PropertiesIOUtil.loadProperties();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -36,7 +40,7 @@ public class DBSqlServerMapper implements DBMapper {
                 "left join sys.extended_properties AS _ext " +
                 "on _obj.id = _ext.major_id and _ext.minor_id=0" +
                 "Where _obj.XType='U'";
-        ResultSet resultSet = DalUtil.findForResultSet(sql);
+        ResultSet resultSet = DalUtil.query(sql);
         try {
             while(resultSet.next()) {
                 String tableName = resultSet.getString(1);  //表名称
@@ -60,7 +64,7 @@ public class DBSqlServerMapper implements DBMapper {
         String sql = "SELECT _col.TABLE_SCHEMA, _col.COLUMN_NAME, _col.IS_NULLABLE, _col.DATA_TYPE, convert(varchar(100), _ext.value) " +
                 "FROM SysObjects AS _sys LEFT JOIN sys.extended_properties AS _ext " +
                 "ON _sys.id=_ext.major_id, INFORMATION_SCHEMA.columns AS _col WHERE _col.TABLE_NAME='"+tableName+"' and _sys.name='"+tableName+"'";
-        ResultSet resultSet = DalUtil.findForResultSet(sql);    //指定需要的列信息
+        ResultSet resultSet = DalUtil.query(sql);    //指定需要的列信息
         try {
             while(resultSet.next()) {
                 String dbObjectName = resultSet.getString(1)+"."+tableName;
@@ -100,8 +104,12 @@ public class DBSqlServerMapper implements DBMapper {
     }
 
     public static void main(String[] args) {
-        DBMapper dbMapper = new DBSqlServerMapper();
-        List<MetaField> metaFieldList = dbMapper.selectAllFields("meta_field");
-        System.out.println(metaFieldList);
+//        DBMapper dbMapper = new DBSqlServerMapper();
+//        List<MetaField> metaFieldList = dbMapper.selectAllFields("meta_field");
+//        System.out.println(metaFieldList);
+        System.out.println(PathUtil.getPath());
+        System.out.println(PathUtil.getRootPath());
+
+//        /Users/houbinbin/IT/fork/metadata/metadata-core/src/main/resources/jdbc_sqlserver.properties
     }
 }

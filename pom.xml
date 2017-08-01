@@ -18,6 +18,27 @@
         <module>metadata-util</module>
     </modules>
 
+    <properties>
+        <!--============================== All Plugins START==============================-->
+        <plugin.compiler.version>3.2</plugin.compiler.version>
+        <plugin.compiler.version>3.2</plugin.compiler.version>
+        <plugin.surefire.version>2.18.1</plugin.surefire.version>
+        <plugin.surefire.skip-it>true</plugin.surefire.skip-it>
+        <plugin.surefire.ignore-failure>true</plugin.surefire.ignore-failure>
+
+        <!--main-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <compiler.level>1.8</compiler.level>
+
+        <!--log4j2-->
+        <log4j2.api.version>2.5</log4j2.api.version>
+
+        <!--test-->
+        <junit.version>4.12</junit.version>
+
+        <mysql-connector-java.version>6.0.6</mysql-connector-java.version>
+    </properties>
+
     <dependencyManagement>
 
         <dependencies>
@@ -72,28 +93,19 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
 
-    <properties>
-        <!--============================== All Plugins START==============================-->
-        <plugin.compiler.version>3.2</plugin.compiler.version>
-        <plugin.compiler.version>3.2</plugin.compiler.version>
-        <plugin.surefire.version>2.18.1</plugin.surefire.version>
-        <plugin.surefire.skip-it>true</plugin.surefire.skip-it>
-        <plugin.surefire.ignore-failure>true</plugin.surefire.ignore-failure>
 
-        <!--main-->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <compiler.level>1.8</compiler.level>
-
-        <!--log4j2-->
-        <log4j2.api.version>2.5</log4j2.api.version>
-
-        <!--test-->
-        <junit.version>4.12</junit.version>
-    </properties>
 
     <build>
         <finalName>${project.name}</finalName>
