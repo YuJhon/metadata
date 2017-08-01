@@ -59,9 +59,10 @@ public class MySqlDBMapper implements DBMapper {
     public List<MetaField> selectAllFields(String tableName) {
         List<MetaField> metaFieldList = new LinkedList<>();
 
-        String sql = "SELECT TABLE_SCHEMA, COLUMN_NAME, IS_NULLABLE, DATA_TYPE, COLUMN_COMMENT " +
-                "FROM information_schema.columns where TABLE_NAME='"+tableName+"';";
         try {
+            String dbName = JDBC_MAPPER.metaData().getConnection().getCatalog();
+            String sql = "SELECT TABLE_SCHEMA, COLUMN_NAME, IS_NULLABLE, DATA_TYPE, COLUMN_COMMENT " +
+                    "FROM information_schema.columns where TABLE_NAME='"+tableName+"' AND TABLE_SCHEMA='"+dbName+"';";
             ResultSet resultSet = JDBC_MAPPER.query(sql);
             while (resultSet.next()) {
                 String dbObjectName = resultSet.getString(1)+"."+tableName;

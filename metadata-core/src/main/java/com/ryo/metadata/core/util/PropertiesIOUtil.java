@@ -1,9 +1,12 @@
 package com.ryo.metadata.core.util;
 
+import com.ryo.medata.util.util.DBSqlUtil;
+import com.ryo.metadata.core.domain.MetaField;
 import org.apache.logging.log4j.util.PropertiesUtil;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -23,16 +26,16 @@ public class PropertiesIOUtil {
      */
     private static final String ROOT_PATH = "/";
 
-    /**
-     * 加载配置文件属性
-     *
-     * @param path
-     * @param fileName
-     */
-    public static void loadProperties(String path, String fileName) {
-        String fullFilePath = path+fileName;
-        loadProperties(fullFilePath);
-    }
+//    /**
+//     * 加载配置文件属性
+//     *
+//     * @param path
+//     * @param fileName
+//     */
+//    public static void loadProperties(String path, String fileName) {
+//        String fullFilePath = path+fileName;
+//        loadProperties(fullFilePath);
+//    }
 
     /**
      * 加载配置文件属性
@@ -59,9 +62,22 @@ public class PropertiesIOUtil {
         return _prop.getProperty(key);
     }
 
-    public static void main(String[] args) {
-        final String path= "D:\\CODE\\metadata\\metadata-core\\src\\main\\resources\\jdbc_sqlserver.properties";
-        loadProperties(path);
+    public static void main(String[] args) throws IllegalAccessException {
+        String dbObjectName = "dbObjectName";
+        String columnName = "columnName";
+        String dataType = "string";
+        String comment = "comment";
 
+        MetaField metaField = new MetaField();
+        metaField.setName(columnName);
+        metaField.setDataType(dataType);
+        metaField.setNullable(true);
+        metaField.setDescription(comment);
+        metaField.setDbObjectName(dbObjectName);
+        metaField.setCreateTime(new Date());
+        metaField.setUpdateTime(new Date());
+        String sql = DBSqlUtil.insert("_table", metaField, null);
+        System.out.println(sql);
     }
+
 }

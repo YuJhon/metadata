@@ -10,12 +10,13 @@
 
 用于存放所有的表字段信息。(包含元数据表)
 
+作用：可以自动为
 
 # 支持数据库
 
-1. mysql
+1. mysql （√）
 
-2. sql server
+2. sql server（√）
 
 3. oracle
 

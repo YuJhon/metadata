@@ -11,6 +11,10 @@ public class StringUtil {
         return null == string || EMPTY.equals(string);
     }
 
+    public static boolean isNotEmpty(final String string) {
+        return !isEmpty(string);
+    }
+
     public static boolean isBlank(String str) {
         int strLen;
         if(str != null && (strLen = str.length()) != 0) {

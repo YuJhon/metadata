@@ -6,4 +6,14 @@ package com.ryo.metadata.core.service;
  */
 public interface DBService {
 
+    /**
+     * 创建实体数据
+     */
+    void createMetaModelData();
+
+    /**
+     * 创建实体字段数据
+     */
+    void createMetaFieldData();
+
 }

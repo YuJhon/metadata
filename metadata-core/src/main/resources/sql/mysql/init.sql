@@ -7,7 +7,7 @@ drop table if exists meta_model;
 /*==============================================================*/
 create table meta_field
 (
-   ID                   int not null comment '自增长主键',
+   ID                   int not null auto_increment comment '自增长主键',
    uid                  varchar(36) comment '唯一标识',
    name                 varchar(36) comment '名称',
    dbObjectName         varchar(36) comment '数据库表名',
@@ -18,7 +18,8 @@ create table meta_field
    createTime           datetime comment '创建时间',
    updateTime           datetime comment '更新时间',
    primary key (ID)
-);
+)
+auto_increment = 1000;
 
 alter table meta_field comment '元数据字段表';
 
@@ -27,7 +28,7 @@ alter table meta_field comment '元数据字段表';
 /*==============================================================*/
 create table meta_model
 (
-   ID                   int not null comment '自增长主键',
+   ID                   int not null auto_increment comment '自增长主键',
    uid                  varchar(36) comment '唯一标识',
    name                 varchar(36) comment '名称',
    dbObjectName         varchar(36) comment '数据库表名',
@@ -39,6 +40,7 @@ create table meta_model
    createTime           datetime comment '创建时间',
    updateTime           datetime comment '更新时间',
    primary key (ID)
-);
+)
+auto_increment = 1000;
 
 alter table meta_model comment '元数据实体表';

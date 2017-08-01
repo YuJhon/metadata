@@ -31,7 +31,7 @@ public class JdbcFactory {
      */
     public static JdbcVo getMySql() throws ClassNotFoundException {
         if(_mysql == null) {
-            String propertyPath = PathUtil.getPath()+"/metadata-core/src/main/resources/jdbc_mysql.properties";
+            String propertyPath = PathUtil.getPath()+"/src/main/resources/jdbc_mysql.properties";
             LOGGER.info("getMySql with file: "+propertyPath);
             _mysql = buildJdbcVo(propertyPath);
         }
@@ -45,7 +45,7 @@ public class JdbcFactory {
      */
     public static JdbcVo getSqlServer() throws ClassNotFoundException {
         if(_sqlServer == null) {
-            String propertyPath = PathUtil.getPath()+"/metadata-core/src/main/resources/jdbc_sqlserver.properties";
+            String propertyPath = PathUtil.getPath()+"/src/main/resources/jdbc_sqlserver.properties";
             LOGGER.info("getSqlServer with file: "+propertyPath);
             _sqlServer = buildJdbcVo(propertyPath);
         }
