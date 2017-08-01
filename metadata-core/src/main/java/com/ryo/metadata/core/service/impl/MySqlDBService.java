@@ -13,6 +13,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
+ * todo:
+ * 1. 插入之前对表进行初始化。
+ * 2. 补充部分字段(uid)的信息
  * Created by bbhou on 2017/8/1.
  */
 public class MySqlDBService implements DBService {
