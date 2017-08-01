@@ -14,6 +14,10 @@ public class PathUtil {
         return System.getProperty("user.dir");
     }
 
+    /**
+     * 在不同的 module 下面使用的时候，这个是不正确的。
+     * @return
+     */
     public static String getRootPath() {
         return Class.class.getClass().getResource("/").getPath();
     }
@@ -28,6 +32,10 @@ public class PathUtil {
             e.printStackTrace();
         }
         return realPath + File.separator;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getPath());
     }
 
 }

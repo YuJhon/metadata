@@ -11,4 +11,9 @@ public class DBClassNameConstant {
      */
     public static final String SQL_SERVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 
+    /**
+     * MySQL 数据库
+     */
+    public static final String MYSQL = "com.mysql.jdbc.Driver";
+
 }

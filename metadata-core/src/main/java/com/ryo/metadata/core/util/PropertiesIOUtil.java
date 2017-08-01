@@ -1,11 +1,8 @@
-package com.ryo.medata.util.util;
+package com.ryo.metadata.core.util;
 
 import org.apache.logging.log4j.util.PropertiesUtil;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
@@ -33,22 +30,23 @@ public class PropertiesIOUtil {
      * @param fileName
      */
     public static void loadProperties(String path, String fileName) {
-        try (InputStream in = PropertiesUtil.class.getResourceAsStream(path + fileName);
+        String fullFilePath = path+fileName;
+        loadProperties(fullFilePath);
+    }
+
+    /**
+     * 加载配置文件属性
+     *
+     * @param filePath
+     */
+    public static void loadProperties(String filePath) {
+//        try (InputStream in = PropertiesUtil.class.getResourceAsStream(filePath);
+        try (InputStream in = new FileInputStream(filePath);
              BufferedReader bf = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
             _prop.load(bf);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * 加载配置文件属性
-     * - 默认加载根路径下文件
-     *
-     * @param fileName
-     */
-    public static void loadProperties(String fileName) {
-        loadProperties(ROOT_PATH, fileName);
     }
 
     /**
@@ -61,4 +59,9 @@ public class PropertiesIOUtil {
         return _prop.getProperty(key);
     }
 
+    public static void main(String[] args) {
+        final String path= "D:\\CODE\\metadata\\metadata-core\\src\\main\\resources\\jdbc_sqlserver.properties";
+        loadProperties(path);
+
+    }
 }
