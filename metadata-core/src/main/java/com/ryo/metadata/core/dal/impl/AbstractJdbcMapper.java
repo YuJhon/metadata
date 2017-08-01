@@ -2,10 +2,7 @@ package com.ryo.metadata.core.dal.impl;
 
 import com.ryo.metadata.core.dal.JdbcMapper;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Created by bbhou on 2017/8/1.
@@ -39,4 +36,8 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
         statement.execute(sql);
     }
 
+    @Override
+    public DatabaseMetaData metaData() throws SQLException {
+        return getConnection().getMetaData();
+    }
 }

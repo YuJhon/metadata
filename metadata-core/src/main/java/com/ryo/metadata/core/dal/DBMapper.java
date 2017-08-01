@@ -12,9 +12,6 @@ import java.util.List;
  */
 public interface DBMapper {
 
-    //1. 查询(表名称，字段类型，字段注释)
-    //2. 执行SQL(数据入库)
-
     /**
      * 查询所有得标信息
      * @return

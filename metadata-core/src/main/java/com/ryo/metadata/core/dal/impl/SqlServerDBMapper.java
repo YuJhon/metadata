@@ -16,7 +16,7 @@ import java.util.List;
  * [](http://www.cnblogs.com/songxingzhu/p/5849029.html)
  * Created by bbhou on 2017/7/31.
  */
-public class DBSqlServerMapper implements DBMapper {
+public class SqlServerDBMapper implements DBMapper {
 
     private static final JdbcMapper JDBC_MAPPER = new SqlServerJdbcMapper();
 

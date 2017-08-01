@@ -17,6 +17,13 @@
             <groupId>com.ryo</groupId>
             <artifactId>metadata-util</artifactId>
         </dependency>
+
+        <!--============================== other ==============================-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

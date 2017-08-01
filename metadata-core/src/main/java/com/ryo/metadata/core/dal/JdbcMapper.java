@@ -1,5 +1,6 @@
 package com.ryo.metadata.core.dal;
 
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,5 +21,11 @@ public interface JdbcMapper {
      * @param sql
      */
     void execute(String sql) throws SQLException;
+
+    /**
+     * 数据库元数据信息
+     * @return
+     */
+    DatabaseMetaData metaData() throws SQLException;
 
 }
