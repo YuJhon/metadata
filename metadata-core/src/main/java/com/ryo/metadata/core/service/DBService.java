@@ -1,12 +1,14 @@
 package com.ryo.metadata.core.service;
 
+import com.ryo.metadata.core.util.singleton.Singleton;
+
 import java.sql.SQLException;
 
 /**
  * 数据库服务层
  * Created by bbhou on 2017/7/31.
  */
-public interface DBService {
+public interface DBService extends Singleton {
 
     /**
      * 创建实体数据

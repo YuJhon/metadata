@@ -1,5 +1,7 @@
 package com.ryo.metadata.core.dal;
 
+import com.ryo.metadata.core.util.singleton.Singleton;
+
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +10,7 @@ import java.util.List;
 /**
  * Created by bbhou on 2017/8/1.
  */
-public interface JdbcMapper {
+public interface JdbcMapper extends Singleton {
 
     /**
      * 执行查询语句

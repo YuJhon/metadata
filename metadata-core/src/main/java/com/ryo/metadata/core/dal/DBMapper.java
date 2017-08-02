@@ -3,6 +3,7 @@ package com.ryo.metadata.core.dal;
 
 import com.ryo.metadata.core.domain.MetaField;
 import com.ryo.metadata.core.domain.MetaModel;
+import com.ryo.metadata.core.util.singleton.Singleton;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * 数据库访问层
  * Created by bbhou on 2017/7/31.
  */
-public interface DBMapper {
+public interface DBMapper extends Singleton {
 
     /**
      * 查询所有得标信息
