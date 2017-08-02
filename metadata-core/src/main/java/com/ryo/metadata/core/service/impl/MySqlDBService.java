@@ -1,6 +1,7 @@
 package com.ryo.metadata.core.service.impl;
 
 import com.ryo.medata.util.util.DBSqlUtil;
+import com.ryo.metadata.core.constant.EntityConstant;
 import com.ryo.metadata.core.dal.DBMapper;
 import com.ryo.metadata.core.dal.JdbcMapper;
 import com.ryo.metadata.core.dal.impl.MySqlDBMapper;
@@ -27,10 +28,10 @@ public class MySqlDBService implements DBService {
         List<MetaModel> metaModelList = DB_MAPPER.selectAllTables();
 
         List<String> sqlList = new LinkedList<>();
-        String truncateTableSql = DBSqlUtil.truncateTable("meta_model");
+        String truncateTableSql = DBSqlUtil.truncateTable(EntityConstant.META_MODEL);
         sqlList.add(truncateTableSql);
         for (MetaModel metaModel : metaModelList) {
-            String insertSql = DBSqlUtil.insert("meta_model", metaModel, null);
+            String insertSql = DBSqlUtil.insert(EntityConstant.META_MODEL, metaModel, null);
             sqlList.add(insertSql);
         }
 
@@ -41,13 +42,13 @@ public class MySqlDBService implements DBService {
     public void createMetaFieldData() throws IllegalAccessException, SQLException {
         List<MetaModel> metaModelList = DB_MAPPER.selectAllTables();
         List<String> sqlList = new LinkedList<>();
-        String truncateTableSql = DBSqlUtil.truncateTable("meta_field");
+        String truncateTableSql = DBSqlUtil.truncateTable(EntityConstant.META_FIELD);
         sqlList.add(truncateTableSql);
         for (MetaModel model : metaModelList) {
             String name = model.getName();
             List<MetaField> metaFieldList = DB_MAPPER.selectAllFields(name);
             for (MetaField metaField : metaFieldList) {
-                String insertSql = DBSqlUtil.insert("meta_field", metaField, null);
+                String insertSql = DBSqlUtil.insert(EntityConstant.META_FIELD, metaField, null);
                 sqlList.add(insertSql);
             }
         }
