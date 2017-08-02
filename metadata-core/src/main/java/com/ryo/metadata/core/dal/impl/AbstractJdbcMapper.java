@@ -23,11 +23,11 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
 
     @Override
     public ResultSet query(String querySql) {
-        Connection conn = getConnection();
         ResultSet rs = null;
+        Connection connection = getConnection();
         try {
             Statement stmt = null;
-            stmt = conn.createStatement();
+            stmt = connection.createStatement();
             rs = stmt.executeQuery(querySql);
         } catch (Exception e) {
             LOGGER.error("query meet ex: "+e, e);
@@ -37,9 +37,12 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
 
     @Override
     public void execute(String sql) throws SQLException {
-        Connection connection = getConnection();
-        Statement statement = connection.createStatement();
-        statement.execute(sql);
+        try(Connection connection = getConnection()) {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (Exception e) {
+            LOGGER.error("execute meet ex: "+e, e);
+        }
     }
 
     @Override
@@ -59,6 +62,10 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
         } catch (SQLException e) {
             connection.rollback();
             LOGGER.error("query meet ex: "+e, e);
+        } finally {
+            if(connection != null) {
+                connection.close();
+            }
         }
     }
 

@@ -44,16 +44,16 @@ public abstract class AbstractDBMapper implements DBMapper {
 
     /**
      * 获取数据库名称
+     * @since 1.7 TWR
      * @return
      */
     protected String getDatabaseName() {
-        try {
-            Connection connection = getJdbcMapper().metaData().getConnection();
+        try(Connection connection = getJdbcMapper().metaData().getConnection()) {
             return connection.getCatalog();    //数据库名称
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("getDatabaseName meet ex: "+e, e);
         }
-        return "";
+        return null;
     }
 
     @Override
