@@ -26,7 +26,8 @@ public class SqlServerDBMapper extends AbstractDBMapper {
     protected String selectAllFieldsSql(String tableName) {
         String sql = "SELECT _col.TABLE_SCHEMA, _col.COLUMN_NAME, _col.IS_NULLABLE, _col.DATA_TYPE, convert(varchar(100), _ext.value) " +
                 "FROM SysObjects AS _sys LEFT JOIN sys.extended_properties AS _ext " +
-                "ON _sys.id=_ext.major_id, INFORMATION_SCHEMA.columns AS _col WHERE _col.TABLE_NAME='"+tableName+"' and _sys.name='"+tableName+"'";
+                "ON _sys.id=_ext.major_id, INFORMATION_SCHEMA.columns AS _col WHERE _col.TABLE_NAME='"+tableName+"' and _sys.name='"+tableName+"' " +
+                "AND _col.ORDINAL_POSITION=_ext.minor_id";
         return sql;
     }
 
