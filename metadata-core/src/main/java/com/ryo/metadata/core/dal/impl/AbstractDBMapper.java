@@ -25,9 +25,9 @@ public abstract class AbstractDBMapper implements DBMapper {
 
     private static final Logger LOGGER = LogManager.getLogger(AbstractDBMapper.class);
 
-    private static final JdbcMapper JDBC_MAPPER = new MySqlJdbcMapper();
-
     private static final IdGenerator idGenerator = new UUIDGenerator();
+
+    protected abstract JdbcMapper getJdbcMapper();
 
     /**
      * 获取所有表信息的SQL
@@ -48,7 +48,7 @@ public abstract class AbstractDBMapper implements DBMapper {
      */
     protected String getDatabaseName() {
         try {
-            Connection connection = JDBC_MAPPER.metaData().getConnection();
+            Connection connection = getJdbcMapper().metaData().getConnection();
             return connection.getCatalog();    //数据库名称
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,7 +64,7 @@ public abstract class AbstractDBMapper implements DBMapper {
 //            DatabaseMetaData databaseMetaData = JDBC_MAPPER.metaData();
 //            ResultSet resultSet = databaseMetaData.getTables(null, null, null, new String[]{"TABLE"});
             String sql = selectAllTablesSql();
-            ResultSet resultSet = JDBC_MAPPER.query(sql);
+            ResultSet resultSet = getJdbcMapper().query(sql);
             while(resultSet.next()) {
                 String uid = idGenerator.genId();
                 String tableName = resultSet.getString(1);  //表名称
@@ -88,7 +88,7 @@ public abstract class AbstractDBMapper implements DBMapper {
     public List<MetaField> selectAllFields(String tableName) {
         List<MetaField> metaFieldList = new LinkedList<>();
         String sql = selectAllFieldsSql(tableName);
-        ResultSet resultSet = JDBC_MAPPER.query(sql);    //指定需要的列信息
+        ResultSet resultSet = getJdbcMapper().query(sql);    //指定需要的列信息
         try {
             while(resultSet.next()) {
                 String uid = idGenerator.genId();

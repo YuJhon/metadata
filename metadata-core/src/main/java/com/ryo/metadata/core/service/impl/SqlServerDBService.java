@@ -2,13 +2,13 @@ package com.ryo.metadata.core.service.impl;
 
 import com.ryo.metadata.core.dal.DBMapper;
 import com.ryo.metadata.core.dal.JdbcMapper;
-import com.ryo.metadata.core.dal.impl.MySqlDBMapper;
-import com.ryo.metadata.core.dal.impl.MySqlJdbcMapper;
+import com.ryo.metadata.core.dal.impl.SqlServerDBMapper;
+import com.ryo.metadata.core.dal.impl.SqlServerJdbcMapper;
 
 /**
  * Created by bbhou on 2017/8/1.
  */
-public class MySqlDBService extends AbstractDBService {
+public class SqlServerDBService extends AbstractDBService {
 
     private static DBMapper dbMapper = null;
 
@@ -17,7 +17,7 @@ public class MySqlDBService extends AbstractDBService {
     @Override
     protected DBMapper getDbMapper() {
         if(null == dbMapper) {
-            dbMapper = new MySqlDBMapper();
+            dbMapper = new SqlServerDBMapper();
         }
         return dbMapper;
     }
@@ -25,7 +25,7 @@ public class MySqlDBService extends AbstractDBService {
     @Override
     protected JdbcMapper getJdbcMapper() {
         if(null == jdbcMapper) {
-            jdbcMapper = new MySqlJdbcMapper();
+            jdbcMapper = new SqlServerJdbcMapper();
         }
         return jdbcMapper;
     }

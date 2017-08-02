@@ -49,9 +49,12 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
         try {
             connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
+
             for(String sql : stringList) {
-                statement.execute(sql);
+                statement.addBatch(sql);
+                LOGGER.debug(sql);
             }
+            statement.executeBatch();
             connection.commit();
         } catch (SQLException e) {
             connection.rollback();

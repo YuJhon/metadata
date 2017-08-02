@@ -16,11 +16,11 @@ go
 /* Table: meta_field                                            */
 /*==============================================================*/
 create table meta_field (
-   ID                   int                  not null,
+   ID                   int                  identity,
    uid                  varchar(36)          null,
-   name                 varchar(36)          null,
+   name                 varchar(125)         null,
    dbObjectName         varchar(36)          null,
-   alias                varchar(36)          null,
+   alias                varchar(125)         null,
    description          varchar(255)         null,
    isNullable           bit                  null,
    dataType             varchar(36)          null,
@@ -241,11 +241,11 @@ go
 /* Table: meta_model                                            */
 /*==============================================================*/
 create table meta_model (
-   ID                   int                  not null,
+   ID                   int                  identity,
    uid                  varchar(36)          null,
-   name                 varchar(36)          null,
+   name                 varchar(125)         null,
    dbObjectName         varchar(36)          null,
-   alias                varchar(36)          null,
+   alias                varchar(125)         null,
    description          varchar(255)         null,
    category             varchar(36)          null,
    isVisible            bit                  null,

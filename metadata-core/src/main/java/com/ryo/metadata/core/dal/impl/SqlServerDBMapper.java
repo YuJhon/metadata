@@ -1,11 +1,18 @@
 package com.ryo.metadata.core.dal.impl;
 
+import com.ryo.metadata.core.dal.JdbcMapper;
+
 /**
  * SQL Server 数据库访问层
  * [](http://www.cnblogs.com/songxingzhu/p/5849029.html)
  * Created by bbhou on 2017/7/31.
  */
 public class SqlServerDBMapper extends AbstractDBMapper {
+
+    @Override
+    protected JdbcMapper getJdbcMapper() {
+        return new SqlServerJdbcMapper();
+    }
 
     @Override
     protected String selectAllTablesSql() {

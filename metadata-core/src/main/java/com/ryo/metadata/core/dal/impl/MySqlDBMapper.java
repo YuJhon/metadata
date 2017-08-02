@@ -1,5 +1,7 @@
 package com.ryo.metadata.core.dal.impl;
 
+import com.ryo.metadata.core.dal.JdbcMapper;
+
 /**
  * [JDBC获取数据库各种信息](http://lavasoft.blog.51cto.com/62575/90739/)
  * SQL Server 数据库访问层
@@ -13,6 +15,11 @@ package com.ryo.metadata.core.dal.impl;
  * @author bbhou
  */
 public class MySqlDBMapper extends AbstractDBMapper {
+
+    @Override
+    protected JdbcMapper getJdbcMapper() {
+        return new MySqlJdbcMapper();
+    }
 
     @Override
     protected String selectAllTablesSql() {
