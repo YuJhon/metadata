@@ -19,6 +19,16 @@ public class DBSqlUtil {
     private static final Logger LOGGER = LogManager.getLogger(DBSqlUtil.class);
 
     /**
+     * 清空一张表
+     * @param tableName
+     * @return
+     */
+    public static String truncateTable(String tableName) {
+        String sql = String.format("TRUNCATE TABLE %s;", tableName);
+        return sql;
+    }
+
+    /**
      * 插入
      * 1. 将对象直接插入到对应的表中。
      * insert into _table (field_a, field_b) VALES (value_a, value_b);
