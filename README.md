@@ -1,16 +1,16 @@
 # MetaData
 
-元数据。用于为数据库提供两张表。 data_table, data_field
+元数据。用于为数据库提供两张表。 meta_field, meta_model
 
-- data_table
+- meta_model
 
 用于存放所有的表信息。(包含元数据表)
 
-- data_field
+- meta_field
 
 用于存放所有的表字段信息。(包含元数据表)
 
-作用：可以自动为
+作用：可以自动将所有的表信息和字段信息存入对应的表中。(注释需要保证库本身已经包含了对于表和字段的注释)
 
 # 支持数据库
 
@@ -36,11 +36,54 @@
 
 # 文档说明
 
+(本项目依赖于maven)
+
 ## MySql 使用方式
 
 - 执行脚本
 
-## todo
+```
+${ROOT}\metadata-test\src\main\resources\sql\mysql\init.sql
+```
+
+- 配置数据库连接
+
+```
+${ROOT}\metadata-test\src\main\resources\jdbc_mysql.properties
+```
+
+- 运行测试案例
+
+```
+${ROOT}\metadata-test\src\test\java\com\ryo\metadata\test\core\service\MySqlDBServiceTest.java
+```
+
+## SQL Server 的使用方式
+
+- lib 
+
+首先将 lib 文件下的 sqljdbc4.jar 文件加在到项目中。后面与 mysql 一致。
+
+- 执行脚本
+
+```
+${ROOT}\metadata-test\src\main\resources\sql\sqlserver\init.sql
+```
+
+- 配置数据库连接
+
+```
+${ROOT}\metadata-test\src\main\resources\jdbc_mysql.properties
+```
+
+- 运行测试案例
+
+```
+${ROOT}\metadata-test\src\test\java\com\ryo\metadata\test\core\service\SqlServerDBServiceTest.java
+```
+
+
+# TODO
 
 - 触发器
 
