@@ -24,6 +24,14 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.weiruan</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/sqljdbc4.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
 </project>
