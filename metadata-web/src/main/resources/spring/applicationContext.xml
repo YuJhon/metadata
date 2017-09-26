@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="applicationContext-web.xml"/>
+    <import resource="applicationContext-mvc.xml"/>
+
+    <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <!-- 这里支持多种寻址方式：classpath和file -->
+                <!--<value>classpath:jdbc.properties</value>-->
+                <!--<value>classpath:scanner.properties</value>-->
+                <!-- 推荐使用file的方式引入，这样可以将配置和代码分离 -->
+                <!--<value>file:/opt/demo/config/demo-remote.properties</value>-->
+            </list>
+        </property>
+    </bean>
+</beans>

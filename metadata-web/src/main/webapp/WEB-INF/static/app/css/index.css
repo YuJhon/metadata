@@ -1,0 +1,32 @@
+
+.article-list {
+    min-height: 450px;
+}
+
+.article-header {
+    font-size: 12px;
+}
+.article-header a {
+    color: #777777;
+}
+.article-header a:hover {
+    color: #0099FF;
+}
+.article-header em {
+    margin-left: 30px;
+}
+
+.article-header {
+    font-size: 12px;
+}
+
+
+.article-split {
+    height: 1px;
+    background: #cccccc;
+    width: 100%;
+}
+
+ul, ol {
+    list-style: none;
+}

@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+/*ul, ol {*/
+    /*list-style: none;*/
+/*}*/
+
+.cn {
+    font-family: Avenir, Lucida Grande, Calibri, Trebuchet MS, Helvetica, Arial, Hiragino Sans GB, WenQuanYi Micro Hei, STHeiti, Microsoft Jhenghei, Nanum Gothic, sans-serif;
+}
+.center {
+    text-align: center;
+}
+.no-pm {
+    padding: 0;
+    margin: 0;
+}
+.f11 {
+    font-size: 11px !important;
+}
+.f12 {
+    font-size: 12px !important;
+}
+.f13 {
+    font-size: 13px !important;
+}
+.f14 {
+    font-size: 14px !important;
+}
+.f15 {
+    font-size: 15px !important;
+}
+.f16 {
+    font-size: 16px !important;
+}
+.f17 {
+    font-size: 17px !important;
+}
+.f18 {
+    font-size: 18px !important;
+}
+.f19 {
+    font-size: 19px !important;
+}
+.f20 {
+    font-size: 20px !important;
+}
+.f22 {
+    font-size: 22px !important;
+}
+.f26 {
+    font-size: 26px !important;
+}
+.f30 {
+    font-size: 30px !important;
+}
+
+
+/**
+ * 自定义-文本溢出处理
+ * @use 需自行定义宽度
+ */
+.my-ellipsis{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+/**
+ * 	自定义-分隔线
+ *  @use 需自定义宽度	<div class="col-xs-12 my-hr"></div>
+ */
+.my-hr {
+    height: 1px;
+    background-color: #ccc;
+    margin: 12px auto;
+}
+
+/**
+ * 自定义按钮颜色
+ * @use 同bootstrap按钮
+ */
+.btn-define {
+    color: #fff;
+    background-color: #0099FF !important;
+    border-color: #0086E6;
+    border-radius: 3px;
+}
+.btn-define:hover,.btn-define:focus,.btn-define:active,.btn-define.active,.open .dropdown-toggle.btn-define
+{
+    color: #fff;
+    background-color: #0089EE;
+    border-color: #357ebd;
+}
+.btn-define:active,.btn-define.active,.open .dropdown-toggle.btn-define
+{
+    background-image: none;
+}
+.btn-define.disabled,.btn-define[disabled],fieldset[disabled] .btn-define,.btn-define.disabled:hover,.btn-define[disabled]:hover,fieldset[disabled] .btn-define:hover,.btn-define.disabled:focus,.btn-define[disabled]:focus,fieldset[disabled] .btn-define:focus,.btn-define.disabled:active,.btn-define[disabled]:active,fieldset[disabled] .btn-define:active,.btn-define.disabled.active,.btn-define[disabled].active,fieldset[disabled] .btn-define.active
+{
+    background-color: #0099FF;
+    border-color: #0086E6;
+}
+.btn-define .badge {
+    color: #0099FF;
+    background-color: #fff;
+}
+
+
+/**
+ * 自定义按钮
+ * @use 同bootstrap按钮
+ */
+.btn-define2 {
+    color: #fff;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 4px;
+    display: inline-block;
+    transition-duration: 0.2s;
+    transition: all 0.5s;
+}
+
+.btn-define2 span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.btn-define2 span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn-define2:hover span {
+    padding-right: 25px;
+    color: #ffffff;
+}
+
+.btn-define2:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+
+/**
+ * 自定义  圆点
+ * @use .dot
+ */
+.dot {
+    width: 5px;
+    height: 5px;
+    background-color: #ffffff;
+    display: inline-block;
+    margin: 0 18px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+/*左右分割线*/
+.recommend-line {
+    position: relative;
+    padding: 20px 0;
+    text-align: center;
+}
+.recommend-line:before, .recommend-line:after, .get-more-line:before, .get-more-line:after {
+    display: block;
+    position: absolute;
+    top: 28px;
+    width: 44%;
+    content: "";
+    border-top: 1px solid #ededed;
+}
+.recommend-line:before, .recommend-line:after, .get-more-line:before, .get-more-line:after {
+    display: block;
+    position: absolute;
+    top: 28px;
+    width: 44%;
+    content: "";
+    border-top: 1px solid #ededed;
+}
+.recommend-line:after, .get-more-line:after {
+    right: 0;
+}
+.recommend-line:before, .get-more-line:before {
+    left: 0;
+}
+.recommend-line span {
+    outline: 0;
+}
+
+.space-5 {
+    clear: both;
+    height: 5px;
+}
+.space-10 {
+    clear: both;
+    height: 10px;
+}
+.space-20 {
+    clear: both;
+    height: 20px;
+}
+.space-30 {
+    clear: both;
+    height: 30px;
+}
+.space-50 {
+    clear: both;
+    height: 50px;
+}
+.space-240 {
+    clear: both;
+    height: 240px;
+}
+
+
+/*margin 常用定义*/
+.mr-10 {
+    margin-right: 10px;
+}
+.mr-20 {
+    margin-right: 20px;
+}
+.mr-30 {
+    margin-right: 30px;
+}
+.ml-10 {
+    margin-left: 10px;
+}
+.ml-20 {
+    margin-left: 20px;
+}
+.ml-30 {
+    margin-right: 30px;
+}
+.mt-10 {
+    margin-top: 10px;
+}
+.mt-20 {
+    margin-top: 20px;
+}
+.mt-30 {
+    margin-top: 30px;
+}
+.mb-10 {
+    margin-bottom: 10px;
+}
+.mb-20 {
+    margin-bottom: 20px;
+}
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+
+/*small screen*/
+@media (max-width: 992px) {
+    .hidden-sm {
+        display: none;
+    }
+
+    .show-sm {
+        display: block !important;
+    }
+}
+
+
+.filter-50 {
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    opacity: 0.5
+}
+.filter-70 {
+    filter:alpha(opacity=70);
+    -moz-opacity:0.75;
+    opacity: 0.75
+}

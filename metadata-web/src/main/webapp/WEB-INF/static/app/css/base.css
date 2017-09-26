@@ -1,0 +1,33 @@
+.base-color {
+    color: #0099FF;
+}
+
+.current-place {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: solid 1px #0099FF;
+}
+.current-place a {
+    color: #333333;
+}
+.current-place a:hover {
+    color: #0099FF;
+}
+
+#main-content {
+    min-height: 700px;
+}
+
+#scroll-top {
+    background-color:rgba(0,153,255,0.75);
+    color: #ffffff;
+    bottom: 60px;
+    right: 15px;
+    height: 38px;
+    line-height: 38px;
+    width: 38px;
+    position: fixed;
+    z-index: 9999;
+    display: none;
+}
+

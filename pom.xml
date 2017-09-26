@@ -12,6 +12,7 @@
         <module>metadata-core</module>
         <module>metadata-test</module>
         <module>metadata-util</module>
+        <module>metadata-web</module>
     </modules>
 
     <properties>
@@ -21,6 +22,8 @@
         <plugin.surefire.version>2.18.1</plugin.surefire.version>
         <plugin.surefire.skip-it>true</plugin.surefire.skip-it>
         <plugin.surefire.ignore-failure>true</plugin.surefire.ignore-failure>
+        <plugin.tomcat.version>2.2</plugin.tomcat.version>
+        <plugin.native2ascii.version>1.0-beta-1</plugin.native2ascii.version>
 
         <!--main-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,12 +36,25 @@
         <junit.version>4.12</junit.version>
 
         <mysql-connector-java.version>5.1.34</mysql-connector-java.version>
+
+        <!--spring-->
+        <spring.version>4.2.3.RELEASE</spring.version>
+        <aspectj.version>1.8.5</aspectj.version>
+
+        <freemarker.version>2.3.22</freemarker.version>
+        <servlet.version>3.1.0</servlet.version>
+
+        <!--ali-->
+        <com.alibaba.fastjson.version>1.2.8</com.alibaba.fastjson.version>
+
+        <!--lombok-->
+        <lombok.version>1.16.8</lombok.version>
     </properties>
 
     <dependencyManagement>
 
         <dependencies>
-            <!--============================== self ==============================-->
+            <!--============================== SELF ==============================-->
             <dependency>
                 <groupId>com.ryo</groupId>
                 <artifactId>metadata-util</artifactId>
@@ -70,7 +86,14 @@
                 <version>${project.version}</version>
             </dependency>
 
-            <!--============================== other ==============================-->
+            <!--============================== OTHER ==============================-->
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.0</version>
+            </dependency>
+
             <!--log4j2-->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -102,6 +125,85 @@
                 <groupId>org.apache.ant</groupId>
                 <artifactId>ant</artifactId>
                 <version>1.10.1</version>
+            </dependency>
+
+            <!--spring-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!-- AOP -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+
+            <!--freemarker-->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
+
+            <!--servlet-->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!--ali-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${com.alibaba.fastjson.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <!--<scope>provided</scope>-->
             </dependency>
 
         </dependencies>
@@ -136,6 +238,41 @@
                         <testFailureIgnore>${plugin.surefire.ignore-failure}</testFailureIgnore>
                     </configuration>
                 </plugin>
+
+
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>${plugin.tomcat.version}</version>
+                    <configuration>
+                        <port>18082</port>
+                        <path>/</path>
+                        <uriEncoding>${project.build.sourceEncoding}</uriEncoding>
+                    </configuration>
+                </plugin>
+
+                <!--属性文件编码控制-->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>native2ascii-maven-plugin</artifactId>
+                    <version>${plugin.native2ascii.version}</version>
+                    <configuration>
+                        <encoding>UTF8</encoding>
+                        <includes>
+                            <include>*_zh*.properties</include>
+                        </includes>
+                    </configuration>
+                    <!--排除依赖-->
+                    <executions>
+                        <execution>
+                            <id>native2ascii-utf8</id>
+                            <goals>
+                                <goal>native2ascii</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
             </plugins>
         </pluginManagement>
 
