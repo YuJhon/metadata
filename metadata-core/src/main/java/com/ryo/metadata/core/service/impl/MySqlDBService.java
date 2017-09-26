@@ -5,6 +5,7 @@ import com.ryo.metadata.core.dal.JdbcMapper;
 import com.ryo.metadata.core.dal.impl.MySqlDBMapper;
 import com.ryo.metadata.core.dal.impl.MySqlJdbcMapper;
 import com.ryo.metadata.core.util.SingletonUtil;
+import com.ryo.metadata.core.util.SqlPathUtil;
 
 /**
  * Created by bbhou on 2017/8/1.
@@ -19,6 +20,11 @@ public class MySqlDBService extends AbstractDBService {
     @Override
     protected JdbcMapper getJdbcMapper() {
         return SingletonUtil.getSingleInstance(MySqlJdbcMapper.class);
+    }
+
+    @Override
+    protected String getSqlFilePath() {
+        return SqlPathUtil.getMysqlPath();
     }
 
 }

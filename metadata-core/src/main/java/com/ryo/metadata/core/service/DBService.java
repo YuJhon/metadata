@@ -11,6 +11,11 @@ import java.sql.SQLException;
 public interface DBService extends Singleton {
 
     /**
+     * 初始化原始数据表
+     */
+    void initMetadataTables() throws Exception;
+
+    /**
      * 创建实体数据
      */
     void createMetaModelData() throws IllegalAccessException, SQLException;

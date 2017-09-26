@@ -46,8 +46,31 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
     }
 
     @Override
-    public void executeTransaction(List<String> stringList) throws SQLException {
-        LOGGER.info("executeTransaction with sql: "+ stringList);
+    public void executeBatch(List<String> stringList) throws SQLException {
+        LOGGER.info("executeBatch with sql: "+ stringList);
+
+        Connection connection = getConnection();
+        try {
+//            connection.setAutoCommit(true);
+            Statement statement = connection.createStatement();
+            for(String sql : stringList) {
+                statement.addBatch(sql);
+                LOGGER.debug(sql);
+            }
+            statement.executeBatch();
+        } catch (SQLException e) {
+            LOGGER.error("executeBatch meet ex: "+e, e);
+        } finally {
+            if(connection != null) {
+                connection.close();
+            }
+        }
+
+    }
+
+    @Override
+    public void executeBatchTx(List<String> stringList) throws SQLException {
+        LOGGER.info("executeBatchTx with sql: "+ stringList);
         Connection connection = getConnection();
         try {
             connection.setAutoCommit(false);
@@ -61,7 +84,7 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
             connection.commit();
         } catch (SQLException e) {
             connection.rollback();
-            LOGGER.error("query meet ex: "+e, e);
+            LOGGER.error("executeBatchTx meet ex: "+e, e);
         } finally {
             if(connection != null) {
                 connection.close();

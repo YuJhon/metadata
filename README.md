@@ -97,3 +97,8 @@ ${ROOT}\metadata-test\src\test\java\com\ryo\metadata\test\core\service\SqlServer
 
 为简化调用，同时执行多条SQL;
 
+- 简化使用
+
+页面配置好数据源。直接点击按钮即可。
+
+

@@ -23,4 +23,10 @@ public class MySqlDBServiceTest {
         dbService.createMetaFieldData();
     }
 
+    @Test
+    public void initMetaDataTablesTest() throws Exception {
+        DBService dbService = new MySqlDBService();
+        dbService.initMetadataTables();
+    }
+
 }

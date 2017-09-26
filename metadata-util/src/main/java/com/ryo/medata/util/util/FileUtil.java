@@ -3,6 +3,10 @@ package com.ryo.medata.util.util;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -223,5 +227,36 @@ public final class FileUtil {
         return result;
     }
 
+    /**
+     * 读取 SQL 文件，获取 SQL 语句
+     * 1. 根据;分隔SQL语句。
+     * 2. 过滤掉注释信息
+     *
+     * @param sqlFilePath SQL 脚本文件
+     * @return List<sql> 返回所有 SQL 语句的 List
+     *
+     * http://blog.itpub.net/12593811/viewspace-720396/
+     * @throws Exception
+     */
+    public static List<String> loadSql(String sqlFilePath) throws Exception {
+        List<String> sqlList = new LinkedList<>();
+
+        String fileContent = getFileContent(sqlFilePath);
+        // Windows 下换行是 \r\n, Linux 下是 \n
+        String[] sqlArr = fileContent.split("(;\\s*\\r\\n)|(;\\s*\\n)");
+        for (int i = 0; i < sqlArr.length; i++) {
+            String sql = sqlArr[i].replaceAll("--.*", "").trim().replaceAll("/\\*.*", "");
+
+            if (StringUtil.isNotEmpty(sql)) {
+                sqlList.add(sql);
+            }
+        }
+
+        return sqlList;
+    }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println(loadSql("D:\\CODE\\metadata\\metadata-test\\src\\main\\resources\\sql\\mysql\\init.sql").size());
+    }
 
 }

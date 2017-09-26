@@ -26,11 +26,18 @@ public interface JdbcMapper extends Singleton {
     void execute(String sql) throws SQLException;
 
     /**
+     * 批量执行脚本；不包含事物。
+     * @param stringList
+     * @throws SQLException
+     */
+    void executeBatch(List<String> stringList) throws SQLException;
+
+    /**
      * 执行SQL
      * 1.包含事物处理
      * 2. sql 本身包含多条sql。同时成功或者失败。
      */
-    void executeTransaction(List<String> stringList) throws SQLException;
+    void executeBatchTx(List<String> stringList) throws SQLException;
 
 
     /**

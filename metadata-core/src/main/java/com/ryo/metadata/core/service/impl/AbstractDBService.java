@@ -1,6 +1,7 @@
 package com.ryo.metadata.core.service.impl;
 
 import com.ryo.medata.util.util.DBSqlUtil;
+import com.ryo.medata.util.util.FileUtil;
 import com.ryo.metadata.core.constant.EntityConstant;
 import com.ryo.metadata.core.dal.DBMapper;
 import com.ryo.metadata.core.dal.JdbcMapper;
@@ -29,6 +30,12 @@ public abstract class AbstractDBService implements DBService {
      */
     protected abstract JdbcMapper getJdbcMapper();
 
+    /**
+     * 获取 SQL 文件脚本路径
+     * @return
+     */
+    protected abstract String getSqlFilePath();
+
     @Override
     public void createMetaModelData() throws IllegalAccessException, SQLException {
         List<MetaModel> metaModelList = getDbMapper().selectAllTables();
@@ -41,7 +48,7 @@ public abstract class AbstractDBService implements DBService {
             sqlList.add(insertSql);
         }
 
-        getJdbcMapper().executeTransaction(sqlList);
+        getJdbcMapper().executeBatchTx(sqlList);
     }
 
     @Override
@@ -58,6 +65,14 @@ public abstract class AbstractDBService implements DBService {
                 sqlList.add(insertSql);
             }
         }
-        getJdbcMapper().executeTransaction(sqlList);
+        getJdbcMapper().executeBatchTx(sqlList);
     }
+
+    @Override
+    public void initMetadataTables() throws Exception {
+        String sqlFilePath = getSqlFilePath();
+        List<String> sqlList = FileUtil.loadSql(sqlFilePath);
+        getJdbcMapper().executeBatchTx(sqlList);
+    }
+
 }
