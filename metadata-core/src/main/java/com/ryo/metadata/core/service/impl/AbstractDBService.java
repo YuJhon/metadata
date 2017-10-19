@@ -8,6 +8,7 @@ import com.ryo.metadata.core.dal.JdbcMapper;
 import com.ryo.metadata.core.domain.MetaField;
 import com.ryo.metadata.core.domain.MetaModel;
 import com.ryo.metadata.core.service.DBService;
+import com.ryo.metadata.core.util.vo.JdbcVo;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -17,6 +18,15 @@ import java.util.List;
  * Created by bbhou on 2017/8/2.
  */
 public abstract class AbstractDBService implements DBService {
+
+    /**
+     * 数据库链接信息
+     */
+    protected JdbcVo jdbcVo;
+
+    public AbstractDBService(JdbcVo jdbcVo) {
+        this.jdbcVo = jdbcVo;
+    }
 
     /**
      * db 数据库访问层
@@ -72,7 +82,19 @@ public abstract class AbstractDBService implements DBService {
     public void initMetadataTables() throws Exception {
         String sqlFilePath = getSqlFilePath();
         List<String> sqlList = FileUtil.loadSql(sqlFilePath);
+        System.out.println("initMetadataTables with sqlList: "+sqlList);
         getJdbcMapper().executeBatchTx(sqlList);
+    }
+
+
+    @Override
+    public void execute() throws Exception {
+        //1.
+        initMetadataTables();
+
+        createMetaModelData();
+
+        createMetaFieldData();
     }
 
 }

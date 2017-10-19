@@ -10,6 +10,14 @@ import java.net.URL;
  */
 public class PathUtil {
 
+    /**
+     * /Users/houbinbin/IT/fork/metadata
+     *
+     * /Users/houbinbin/IT/fork/metadata/metadata-core/target/classes/sql/mysql.sql
+     *
+     * /Users/houbinbin/IT/fork/metadata/metadata-core/src/main/resources/sql/mysql.sql
+     * @return
+     */
     public static String getPath() {
         return System.getProperty("user.dir");
     }
@@ -35,7 +43,8 @@ public class PathUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(getPath());
+        String content = getPath()+"/metadata-core/src/main/resources/sql/mysql.sql";
+        System.out.println(FileUtil.getFileContent(content));
     }
 
 }

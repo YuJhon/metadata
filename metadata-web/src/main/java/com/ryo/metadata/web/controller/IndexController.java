@@ -1,9 +1,14 @@
 package com.ryo.metadata.web.controller;
 
+import com.ryo.metadata.core.util.SqlPathUtil;
 import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.net.URISyntaxException;
 
 /**
  * @author houbinbin
@@ -13,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 @Log4j2
 public class IndexController {
+
+    private static final Logger LOGGER = LogManager.getLogger(IndexController.class);
 
     /**
      * 页面路径,统一定义
@@ -26,7 +33,10 @@ public class IndexController {
      * hard code
      */
     @RequestMapping
-    public String index(Model model) {
+    public String index(Model model) throws URISyntaxException {
+
+        String path = SqlPathUtil.getMysqlPath();
+        LOGGER.info(">>>>>>> path: "+path);
         return INDEX_PATH;
     }
 

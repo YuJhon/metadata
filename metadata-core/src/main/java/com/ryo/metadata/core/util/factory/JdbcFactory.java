@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
  * 生成对应的JDBC信息
  * Created by bbhou on 2017/8/1.
  */
+@Deprecated
 public class JdbcFactory {
 
     private static final Logger LOGGER = LogManager.getLogger(JdbcFactory.class);
@@ -29,7 +30,7 @@ public class JdbcFactory {
      * @return
      * @throws ClassNotFoundException
      */
-    public static JdbcVo getMySql() throws ClassNotFoundException {
+    public static JdbcVo getMySql(JdbcVo jdbcVo) throws ClassNotFoundException {
         if(_mysql == null) {
             String propertyPath = PathUtil.getPath()+"/src/main/resources/jdbc_mysql.properties";
             LOGGER.info("getMySql with file: "+propertyPath);

@@ -29,7 +29,7 @@ public class ControllerLogInterceptor {
     private Map<String, Object> outputParamMap = null; // 存放输出结果
 
 
-    @Pointcut("execution(public * com.ryo.doc.web.controller..*.*(..))")
+    @Pointcut("execution(public * com.ryo.metadata.web.controller..*.*(..))")
     public void myPointcut() {
     }
 

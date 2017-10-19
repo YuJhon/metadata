@@ -1,8 +1,6 @@
 package com.ryo.metadata.test.dal;
 
 import com.ryo.medata.util.util.FileUtil;
-import com.ryo.metadata.core.dal.JdbcMapper;
-import com.ryo.metadata.core.dal.impl.MySqlJdbcMapper;
 import org.junit.Test;
 
 import java.util.List;
@@ -16,8 +14,8 @@ public class MySqlJdbcMapperTest {
     public void executeTest() throws Exception {
         List<String> stringList = FileUtil.loadSql("D:\\CODE\\metadata\\metadata-test\\src\\main\\resources\\sql\\mysql\\init.sql");
 
-        JdbcMapper jdbcMapper = new MySqlJdbcMapper();
-        jdbcMapper.executeBatchTx(stringList);
+//        JdbcMapper jdbcMapper = new MySqlJdbcMapper();
+//        jdbcMapper.executeBatchTx(stringList);
 
     }
 

@@ -3,10 +3,6 @@ package com.ryo.medata.util.util;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -256,7 +252,9 @@ public final class FileUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(loadSql("D:\\CODE\\metadata\\metadata-test\\src\\main\\resources\\sql\\mysql\\init.sql").size());
+
+        System.out.println(getFileContent("file:/Users/houbinbin/IT/tools/tomcat/tomcat8/webapps/ROOT/WEB-INF/lib/metadata-core-1.0-SNAPSHOT.jar!/sql/mysql.sql"));
+//        System.out.println(loadSql("D:\\CODE\\metadata\\metadata-test\\src\\main\\resources\\sql\\mysql\\init.sql").size());
     }
 
 }

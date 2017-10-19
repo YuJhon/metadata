@@ -21,7 +21,10 @@
             <groupId>com.ryo</groupId>
             <artifactId>metadata-util</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.ryo</groupId>
+            <artifactId>metadata-core</artifactId>
+        </dependency>
 
         <!--============================== OTHER ==============================-->
 
@@ -86,6 +89,12 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
         </dependency>
 
     </dependencies>

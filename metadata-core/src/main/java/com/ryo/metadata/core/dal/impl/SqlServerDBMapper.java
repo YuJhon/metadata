@@ -1,6 +1,7 @@
 package com.ryo.metadata.core.dal.impl;
 
 import com.ryo.metadata.core.dal.JdbcMapper;
+import com.ryo.metadata.core.util.vo.JdbcVo;
 
 /**
  * SQL Server 数据库访问层
@@ -9,9 +10,13 @@ import com.ryo.metadata.core.dal.JdbcMapper;
  */
 public class SqlServerDBMapper extends AbstractDBMapper {
 
+    public SqlServerDBMapper(JdbcVo jdbcVo) {
+        super(jdbcVo);
+    }
+
     @Override
     protected JdbcMapper getJdbcMapper() {
-        return new SqlServerJdbcMapper();
+        return new SqlServerJdbcMapper(jdbcVo);
     }
 
     @Override

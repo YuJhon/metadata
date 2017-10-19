@@ -6,6 +6,7 @@ import com.ryo.metadata.core.domain.MetaField;
 import com.ryo.metadata.core.domain.MetaModel;
 import com.ryo.metadata.core.service.IdGenerator;
 import com.ryo.metadata.core.service.impl.UUIDGenerator;
+import com.ryo.metadata.core.util.vo.JdbcVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,6 +23,12 @@ import java.util.List;
  * Created by bbhou on 2017/8/2.
  */
 public abstract class AbstractDBMapper implements DBMapper {
+
+    protected JdbcVo jdbcVo;
+
+    public AbstractDBMapper(JdbcVo jdbcVo) {
+        this.jdbcVo = jdbcVo;
+    }
 
     private static final Logger LOGGER = LogManager.getLogger(AbstractDBMapper.class);
 

@@ -1,6 +1,7 @@
 package com.ryo.metadata.core.dal.impl;
 
 import com.ryo.metadata.core.dal.JdbcMapper;
+import com.ryo.metadata.core.util.vo.JdbcVo;
 
 /**
  * [JDBC获取数据库各种信息](http://lavasoft.blog.51cto.com/62575/90739/)
@@ -16,9 +17,13 @@ import com.ryo.metadata.core.dal.JdbcMapper;
  */
 public class MySqlDBMapper extends AbstractDBMapper {
 
+    public MySqlDBMapper(JdbcVo jdbcVo) {
+        super(jdbcVo);
+    }
+
     @Override
     protected JdbcMapper getJdbcMapper() {
-        return new MySqlJdbcMapper();
+        return new MySqlJdbcMapper(jdbcVo);
     }
 
     @Override

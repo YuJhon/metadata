@@ -1,11 +1,11 @@
 package com.ryo.metadata.core.dal.impl;
 
 import com.ryo.metadata.core.dal.JdbcMapper;
+import com.ryo.metadata.core.util.vo.JdbcVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,6 +14,12 @@ import java.util.List;
 public abstract class AbstractJdbcMapper implements JdbcMapper {
 
     private static final Logger LOGGER = LogManager.getLogger(AbstractJdbcMapper.class);
+
+    protected JdbcVo jdbcVo;
+
+    public AbstractJdbcMapper(JdbcVo jdbcVo) {
+        this.jdbcVo = jdbcVo;
+    }
 
     /**
      * 获取数据库连接

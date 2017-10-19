@@ -25,4 +25,9 @@ public interface DBService extends Singleton {
      */
     void createMetaFieldData() throws IllegalAccessException, SQLException;
 
+    /**
+     * 执行
+     */
+    void execute() throws Exception;
+
 }

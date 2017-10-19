@@ -7,7 +7,7 @@
     <groupId>com.ryo</groupId>
     <artifactId>metadata</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <modules>
         <module>metadata-core</module>
         <module>metadata-test</module>
@@ -210,8 +210,6 @@
     </dependencyManagement>
 
 
-
-
     <build>
         <finalName>${project.name}</finalName>
 
@@ -248,7 +246,19 @@
                         <port>18082</port>
                         <path>/</path>
                         <uriEncoding>${project.build.sourceEncoding}</uriEncoding>
+
+                        <!-- extra dependencies to add jdbc driver, mail jars, etc. -->
+                        <extraDependencies>
+                            <extraDependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>${mysql-connector-java.version}</version>
+                            </extraDependency>
+                        </extraDependencies>
+
                     </configuration>
+
+
                 </plugin>
 
                 <!--属性文件编码控制-->
@@ -289,5 +299,5 @@
             </plugin>
         </plugins>
     </build>
-    
+
 </project>
