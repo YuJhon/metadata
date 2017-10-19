@@ -17,13 +17,13 @@ go
 /*==============================================================*/
 create table meta_field (
    ID                   int                  identity,
-   uid                  varchar(36)          null,
-   name                 varchar(125)         null,
-   dbObjectName         varchar(36)          null,
-   alias                varchar(125)         null,
+   uid                  varchar(128)          null,
+   name                 varchar(128)         null,
+   dbObjectName         varchar(128)          null,
+   alias                varchar(128)         null,
    description          varchar(255)         null,
    isNullable           bit                  null,
-   dataType             varchar(36)          null,
+   dataType             varchar(128)          null,
    createTime           datetime             null,
    updateTime           datetime             null,
    constraint PK_META_FIELD primary key nonclustered (ID)
@@ -242,12 +242,12 @@ go
 /*==============================================================*/
 create table meta_model (
    ID                   int                  identity,
-   uid                  varchar(36)          null,
-   name                 varchar(125)         null,
-   dbObjectName         varchar(36)          null,
-   alias                varchar(125)         null,
+   uid                  varchar(128)          null,
+   name                 varchar(128)         null,
+   dbObjectName         varchar(128)          null,
+   alias                varchar(128)         null,
    description          varchar(255)         null,
-   category             varchar(36)          null,
+   category             varchar(128)          null,
    isVisible            bit                  null,
    isEditable           bit                  null,
    createTime           datetime             null,
