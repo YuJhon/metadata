@@ -62,16 +62,17 @@
         //1. 如果某一个字段缺失  会导致400
         $(function () {
             $("#execute").on('click', function () {
-//                alert("asdfsa");
                 var host = $("#host-input").val();
                 var port = $("#port-input").val();
                 var database = $("#database-input").val();
                 var username = $("#username-input").val();
                 var password = $("#password-input").val();
 
+                if(!database) {
+                    layer.msg("database 不可以为空!");
+                    return false;   //如果是 return true; 页面会重新加载
+                }
 
-                console.log("Start post...");
-                alert("start");
                 $.ajax({
                     type: 'POST',
                     url: "/metadata/mysql/execute",

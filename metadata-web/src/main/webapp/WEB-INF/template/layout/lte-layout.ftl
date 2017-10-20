@@ -62,6 +62,9 @@
 <#--====================================== admin-lte ======================================-->
 <script src="${ctx}/static/lib/adminlte/dist/js/adminlte.min.js"></script>
 
+<#--====================================== layer ======================================-->
+<script src="${ctx}/static/lib/layer/layer.js"></script>
+
 <#--====================================== self ======================================-->
 <script src="${ctx}/static/app/js/app.js"></script>
 <script src="${ctx}/static/app/js/base.js"></script>
