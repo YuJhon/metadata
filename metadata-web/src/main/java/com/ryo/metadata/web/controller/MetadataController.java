@@ -1,9 +1,10 @@
 package com.ryo.metadata.web.controller;
 
-import com.ryo.metadata.core.service.DBService;
-import com.ryo.metadata.core.service.impl.MySqlDBService;
+import com.ryo.medata.util.util.FileUtil;
+import com.ryo.metadata.core.util.CoreSqlPathUtil;
 import com.ryo.metadata.core.util.vo.JdbcVo;
 import com.ryo.metadata.web.dto.response.BaseResponse;
+import com.ryo.metadata.web.util.SqlPathUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.InputStream;
 
 /**
  * 元数据控制层
@@ -60,18 +63,38 @@ public class MetadataController {
 
         log.info("start...");
         BaseResponse baseResponse = new BaseResponse();
-        JdbcVo jdbcVo = buildMySqlJdbcVo(host, port, database, username, password);
+//        JdbcVo jdbcVo = buildMySqlJdbcVo(host, port, database, username, password);
+//
+//        DBService dbService = new MySqlDBService(jdbcVo);
+//        try {
+//            dbService.initMetadataTables();
+//            log.info("After init tables....");
+//            dbService.execute();
+//            baseResponse.setSuccess(true);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            baseResponse.setSuccess(false);
+//        }
 
-        DBService dbService = new MySqlDBService(jdbcVo);
+
+        String path = SqlPathUtil.getMysqlPath();
+        log.info("================= " +path);
+
+        String content = FileUtil.getFileContent(path);
+        log.info("================= " +content);
+
+
+        log.info("--------------------------------------------");
         try {
-            dbService.initMetadataTables();
-            log.info("After init tables....");
-            dbService.execute();
-            baseResponse.setSuccess(true);
+            InputStream inputStream = CoreSqlPathUtil.readFile();
+            log.info("================= inputStream" +(inputStream!=null));
         } catch (Exception e) {
             e.printStackTrace();
-            baseResponse.setSuccess(false);
         }
+
+
+//        String coreContent = FileUtil.getFileContent(corePath);
+//        log.info("================= " +coreContent);
 
         return baseResponse;
     }

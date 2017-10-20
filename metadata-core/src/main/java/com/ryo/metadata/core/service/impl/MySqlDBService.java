@@ -4,13 +4,16 @@ import com.ryo.metadata.core.dal.DBMapper;
 import com.ryo.metadata.core.dal.JdbcMapper;
 import com.ryo.metadata.core.dal.impl.MySqlDBMapper;
 import com.ryo.metadata.core.dal.impl.MySqlJdbcMapper;
-import com.ryo.metadata.core.util.SqlPathUtil;
 import com.ryo.metadata.core.util.vo.JdbcVo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created by bbhou on 2017/8/1.
  */
 public class MySqlDBService extends AbstractDBService {
+
+    private static final Logger LOGGER = LogManager.getLogger(MySqlDBService.class);
 
     public MySqlDBService(JdbcVo jdbcVo) {
         super(jdbcVo);
@@ -26,13 +29,15 @@ public class MySqlDBService extends AbstractDBService {
         return new MySqlJdbcMapper(jdbcVo);
     }
 
+//    @Override
+//    protected boolean hasInitMetadataTables() {
+//        return false;
+//    }
+
     @Override
-    protected String getSqlFilePath() {
-        return SqlPathUtil.getMysqlPath();
+    protected void createMetadataTables() {
+        LOGGER.info("============================== createMetadataTables START");
+        LOGGER.info("============================== createMetadataTables END");
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(SqlPathUtil.getMysqlPath());
-    }
 }

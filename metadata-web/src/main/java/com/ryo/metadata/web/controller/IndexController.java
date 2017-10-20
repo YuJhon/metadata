@@ -1,6 +1,6 @@
 package com.ryo.metadata.web.controller;
 
-import com.ryo.metadata.core.util.SqlPathUtil;
+import com.ryo.metadata.core.util.CoreSqlPathUtil;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,8 +35,8 @@ public class IndexController {
     @RequestMapping
     public String index(Model model) throws URISyntaxException {
 
-        String path = SqlPathUtil.getMysqlPath();
-        LOGGER.info(">>>>>>> path: "+path);
+//        String path = CoreSqlPathUtil.getMysqlPath();
+//        LOGGER.info(">>>>>>> path: "+path);
         return INDEX_PATH;
     }
 

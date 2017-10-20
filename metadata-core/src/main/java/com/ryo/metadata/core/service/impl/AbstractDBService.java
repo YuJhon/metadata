@@ -9,6 +9,8 @@ import com.ryo.metadata.core.domain.MetaField;
 import com.ryo.metadata.core.domain.MetaModel;
 import com.ryo.metadata.core.service.DBService;
 import com.ryo.metadata.core.util.vo.JdbcVo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -18,6 +20,8 @@ import java.util.List;
  * Created by bbhou on 2017/8/2.
  */
 public abstract class AbstractDBService implements DBService {
+
+    private static final Logger LOGGER = LogManager.getLogger(AbstractDBService.class);
 
     /**
      * 数据库链接信息
@@ -41,10 +45,15 @@ public abstract class AbstractDBService implements DBService {
     protected abstract JdbcMapper getJdbcMapper();
 
     /**
-     * 获取 SQL 文件脚本路径
+     * 是否已经初始化表
      * @return
      */
-    protected abstract String getSqlFilePath();
+//    protected abstract boolean hasInitMetadataTables();
+
+    /**
+     * 创建原始数据表
+     */
+    protected abstract void createMetadataTables();
 
     @Override
     public void createMetaModelData() throws IllegalAccessException, SQLException {
@@ -78,18 +87,26 @@ public abstract class AbstractDBService implements DBService {
         getJdbcMapper().executeBatchTx(sqlList);
     }
 
+
     @Override
     public void initMetadataTables() throws Exception {
-        String sqlFilePath = getSqlFilePath();
-        List<String> sqlList = FileUtil.loadSql(sqlFilePath);
-        System.out.println("initMetadataTables with sqlList: "+sqlList);
-        getJdbcMapper().executeBatchTx(sqlList);
+
+        createMetadataTables();
+
+//        boolean hasInit = hasInitMetadataTables();
+//        if(hasInit) {
+//            LOGGER.warn("数据库已经存在对应的表。此处跳过");
+//        } else {
+//            LOGGER.info("创建原始数据表开始");
+//            createMetadataTables();
+//            LOGGER.info("创建原始数据表结束");
+//        }
+
     }
 
 
     @Override
     public void execute() throws Exception {
-        //1.
         initMetadataTables();
 
         createMetaModelData();

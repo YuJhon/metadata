@@ -43,8 +43,10 @@ public class PathUtil {
     }
 
     public static void main(String[] args) {
-        String content = getPath()+"/metadata-core/src/main/resources/sql/mysql.sql";
-        System.out.println(FileUtil.getFileContent(content));
+        System.out.println(getRootPath());
+        System.out.println(getPath());
+//        String content = getPath()+"/metadata-core/src/main/resources/sql/mysql.sql";
+//        System.out.println(FileUtil.getFileContent(content));
     }
 
 }

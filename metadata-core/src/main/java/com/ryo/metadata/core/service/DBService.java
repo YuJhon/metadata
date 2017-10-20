@@ -12,6 +12,8 @@ public interface DBService extends Singleton {
 
     /**
      * 初始化原始数据表
+     * 1. 首先判断是否已经创建过对应的元数据表，如果存在则跳过
+     * 2. 如果不存在则进行创建
      */
     void initMetadataTables() throws Exception;
 

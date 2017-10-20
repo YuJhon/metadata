@@ -67,11 +67,11 @@
                 var database = $("#database-input").val();
                 var username = $("#username-input").val();
                 var password = $("#password-input").val();
-
-                if(!database) {
-                    layer.msg("database 不可以为空!");
-                    return false;   //如果是 return true; 页面会重新加载
-                }
+//
+//                if(!database) {
+//                    layer.msg("database 不可以为空!");
+//                    return false;   //如果是 return true; 页面会重新加载
+//                }
 
                 $.ajax({
                     type: 'POST',

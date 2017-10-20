@@ -5,7 +5,6 @@ import com.ryo.metadata.core.dal.JdbcMapper;
 import com.ryo.metadata.core.dal.impl.SqlServerDBMapper;
 import com.ryo.metadata.core.dal.impl.SqlServerJdbcMapper;
 import com.ryo.metadata.core.util.SingletonUtil;
-import com.ryo.metadata.core.util.SqlPathUtil;
 import com.ryo.metadata.core.util.vo.JdbcVo;
 
 /**
@@ -27,9 +26,14 @@ public class SqlServerDBService extends AbstractDBService {
         return SingletonUtil.getSingleInstance(SqlServerJdbcMapper.class);
     }
 
+//    @Override
+//    protected boolean hasInitMetadataTables() {
+//        return false;
+//    }
+
     @Override
-    protected String getSqlFilePath() {
-        return SqlPathUtil.getSqlServerPath();
+    protected void createMetadataTables() {
+
     }
 
 }
