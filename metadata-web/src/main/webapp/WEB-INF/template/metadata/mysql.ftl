@@ -26,7 +26,7 @@
     <div class="form-group">
         <label for="database-input" class="col-xs-2 control-label">DataBase</label>
         <div class="col-xs-8">
-            <input type="text" class="form-control" id="database-input" placeholder="database">
+            <input type="text" class="form-control" id="database-input" placeholder="database" required="required">
         </div>
     </div>
 
