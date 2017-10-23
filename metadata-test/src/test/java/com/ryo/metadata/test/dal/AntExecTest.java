@@ -31,4 +31,12 @@ public class AntExecTest {
         sqlExec.execute();
     }
 
+    //1. 读取 inputStream
+
+    //2. 创建临时文件
+
+    //3. 执行 SQL 脚本
+
+    //4. 删除文件
+
 }
