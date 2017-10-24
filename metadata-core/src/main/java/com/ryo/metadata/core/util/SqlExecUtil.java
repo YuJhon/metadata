@@ -54,6 +54,7 @@ public class SqlExecUtil {
 
 
     /**
+     * TODO: 这段代码需要优化。
      * @param inStream
      * @return
      * @throws Exception
@@ -66,7 +67,9 @@ public class SqlExecUtil {
             outStream.write(buffer, 0, len);
         }
         outStream.close();
-        inStream.close();
+
+        //这个不能关闭 否则多次执行会出问题。
+//        inStream.close();
         return outStream.toByteArray();
     }
 

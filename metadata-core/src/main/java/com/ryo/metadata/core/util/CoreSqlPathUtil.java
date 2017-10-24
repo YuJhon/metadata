@@ -1,11 +1,12 @@
 package com.ryo.metadata.core.util;
 
-import java.io.File;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
@@ -15,19 +16,26 @@ import java.net.URL;
  */
 public class CoreSqlPathUtil {
 
+    private static final Logger LOGGER = LogManager.getLogger(CoreSqlPathUtil.class);
+
     /**
      * 文件路径
      */
-    private static final String FILE_PATH = "coreMysql.sql";
+    private static final String MYSQL_PATH = "coreMysql.sql";
+
+    private static final String SQL_SERVER_PATH = "coreSqlServer.sql";
 
 
-    /**
-     * MySQL 路径
-     */
-    private static String mysql_path = "";
+    private static InputStream mysqlInputStream;
+    private static InputStream sqlServerInputStream;
 
     static {
-
+        try {
+            mysqlInputStream = getInputStream(MYSQL_PATH);
+            sqlServerInputStream = getInputStream(SQL_SERVER_PATH);
+        } catch (Exception e) {
+            LOGGER.error("Init sql inputStream meet ex: "+e, e);
+        }
 
     }
 
@@ -58,10 +66,6 @@ public class CoreSqlPathUtil {
             }
         } catch (IOException localIOException1) {
             throw new Exception(localIOException1);
-        } finally {
-            if(inputStream != null) {
-                inputStream.close();
-            }
         }
 
         return inputStream;
@@ -72,11 +76,12 @@ public class CoreSqlPathUtil {
      *
      * @return
      */
-    public static String getMysqlPath() {
-        return mysql_path;
+    public static InputStream getMysqlInputStream() {
+        return mysqlInputStream;
     }
 
-//    public static void main(String[] args) {
-//        File file = new InputStream().;
-//    }
+    public static InputStream getSqlServerInputStream() {
+        return sqlServerInputStream;
+    }
+
 }

@@ -4,6 +4,8 @@ import com.ryo.metadata.core.dal.DBMapper;
 import com.ryo.metadata.core.dal.JdbcMapper;
 import com.ryo.metadata.core.dal.impl.MySqlDBMapper;
 import com.ryo.metadata.core.dal.impl.MySqlJdbcMapper;
+import com.ryo.metadata.core.util.CoreSqlPathUtil;
+import com.ryo.metadata.core.util.SqlExecUtil;
 import com.ryo.metadata.core.util.vo.JdbcVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,14 +31,10 @@ public class MySqlDBService extends AbstractDBService {
         return new MySqlJdbcMapper(jdbcVo);
     }
 
-//    @Override
-//    protected boolean hasInitMetadataTables() {
-//        return false;
-//    }
-
     @Override
-    protected void createMetadataTables() {
+    protected void createMetadataTables() throws Exception {
         LOGGER.info("============================== createMetadataTables START");
+        SqlExecUtil.execute(this.jdbcVo, CoreSqlPathUtil.getMysqlInputStream());
         LOGGER.info("============================== createMetadataTables END");
     }
 
