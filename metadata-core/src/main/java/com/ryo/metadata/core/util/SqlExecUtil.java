@@ -67,9 +67,7 @@ public class SqlExecUtil {
             outStream.write(buffer, 0, len);
         }
         outStream.close();
-
-        //这个不能关闭 否则多次执行会出问题。
-//        inStream.close();
+        inStream.close();
         return outStream.toByteArray();
     }
 

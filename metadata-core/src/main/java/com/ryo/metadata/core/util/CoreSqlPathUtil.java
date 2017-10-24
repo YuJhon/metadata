@@ -10,7 +10,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- *
  * 彻底搞清楚 web 项目中路径问题。
  * Created by bbhou on 2017/9/26.
  */
@@ -26,23 +25,9 @@ public class CoreSqlPathUtil {
     private static final String SQL_SERVER_PATH = "coreSqlServer.sql";
 
 
-    private static InputStream mysqlInputStream;
-    private static InputStream sqlServerInputStream;
-
-    static {
-        try {
-            mysqlInputStream = getInputStream(MYSQL_PATH);
-            sqlServerInputStream = getInputStream(SQL_SERVER_PATH);
-        } catch (Exception e) {
-            LOGGER.error("Init sql inputStream meet ex: "+e, e);
-        }
-
-    }
-
-
-
     /**
      * 获取文件对应输入流
+     *
      * @param filePath 文件路径
      * @return
      */
@@ -73,15 +58,14 @@ public class CoreSqlPathUtil {
 
 
     /**
-     *
      * @return
      */
-    public static InputStream getMysqlInputStream() {
-        return mysqlInputStream;
+    public static InputStream getMysqlInputStream() throws Exception {
+        return getInputStream(MYSQL_PATH);
     }
 
-    public static InputStream getSqlServerInputStream() {
-        return sqlServerInputStream;
+    public static InputStream getSqlServerInputStream() throws Exception {
+        return getInputStream(SQL_SERVER_PATH);
     }
 
 }

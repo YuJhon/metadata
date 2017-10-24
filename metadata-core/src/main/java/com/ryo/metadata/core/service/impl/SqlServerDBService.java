@@ -24,12 +24,14 @@ public class SqlServerDBService extends AbstractDBService {
 
     @Override
     protected DBMapper getDbMapper() {
-        return SingletonUtil.getSingleInstance(SqlServerDBMapper.class);
+        return new SqlServerDBMapper(jdbcVo);
+//        return SingletonUtil.getSingleInstance(SqlServerDBMapper.class);
     }
 
     @Override
     protected JdbcMapper getJdbcMapper() {
-        return SingletonUtil.getSingleInstance(SqlServerJdbcMapper.class);
+        return new SqlServerJdbcMapper(jdbcVo);
+//        return SingletonUtil.getSingleInstance(SqlServerJdbcMapper.class);
     }
 
     @Override

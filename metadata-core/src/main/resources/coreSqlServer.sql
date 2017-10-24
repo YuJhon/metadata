@@ -2,15 +2,14 @@ if exists (select 1
             from  sysobjects
            where  id = object_id('meta_field')
             and   type = 'U')
-   drop table meta_field
-go
+   drop table meta_field;
+
 
 if exists (select 1
             from  sysobjects
            where  id = object_id('meta_model')
             and   type = 'U')
-   drop table meta_model
-go
+   drop table meta_model;
 
 /*==============================================================*/
 /* Table: meta_field                                            */
@@ -27,8 +26,7 @@ create table meta_field (
    createTime           datetime             null,
    updateTime           datetime             null,
    constraint PK_META_FIELD primary key nonclustered (ID)
-)
-go
+);
 
 if exists (select 1 from  sys.extended_properties
            where major_id = object_id('meta_field') and minor_id = 0)
@@ -44,8 +42,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '元数据字段表',
-   'user', @CurrentUser, 'table', 'meta_field'
-go
+   'user', @CurrentUser, 'table', 'meta_field';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_field')
@@ -63,8 +60,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '自增长主键',
-   'user', @CurrentUser, 'table', 'meta_field', 'column', 'ID'
-go
+   'user', @CurrentUser, 'table', 'meta_field', 'column', 'ID';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_field')
@@ -82,8 +78,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '唯一标识',
-   'user', @CurrentUser, 'table', 'meta_field', 'column', 'uid'
-go
+   'user', @CurrentUser, 'table', 'meta_field', 'column', 'uid';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_field')
@@ -101,8 +96,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '名称',
-   'user', @CurrentUser, 'table', 'meta_field', 'column', 'name'
-go
+   'user', @CurrentUser, 'table', 'meta_field', 'column', 'name';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_field')
@@ -120,8 +114,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '数据库表名',
-   'user', @CurrentUser, 'table', 'meta_field', 'column', 'dbObjectName'
-go
+   'user', @CurrentUser, 'table', 'meta_field', 'column', 'dbObjectName';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_field')
@@ -139,8 +132,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '别名',
-   'user', @CurrentUser, 'table', 'meta_field', 'column', 'alias'
-go
+   'user', @CurrentUser, 'table', 'meta_field', 'column', 'alias';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_field')
@@ -158,8 +150,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '描述',
-   'user', @CurrentUser, 'table', 'meta_field', 'column', 'description'
-go
+   'user', @CurrentUser, 'table', 'meta_field', 'column', 'description';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_field')
@@ -177,8 +168,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '是否可为空',
-   'user', @CurrentUser, 'table', 'meta_field', 'column', 'isNullable'
-go
+   'user', @CurrentUser, 'table', 'meta_field', 'column', 'isNullable';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_field')
@@ -196,8 +186,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '数据类型',
-   'user', @CurrentUser, 'table', 'meta_field', 'column', 'dataType'
-go
+   'user', @CurrentUser, 'table', 'meta_field', 'column', 'dataType';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_field')
@@ -215,8 +204,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '创建时间',
-   'user', @CurrentUser, 'table', 'meta_field', 'column', 'createTime'
-go
+   'user', @CurrentUser, 'table', 'meta_field', 'column', 'createTime';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_field')
@@ -234,8 +222,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '更新时间',
-   'user', @CurrentUser, 'table', 'meta_field', 'column', 'updateTime'
-go
+   'user', @CurrentUser, 'table', 'meta_field', 'column', 'updateTime';
 
 /*==============================================================*/
 /* Table: meta_model                                            */
@@ -253,8 +240,7 @@ create table meta_model (
    createTime           datetime             null,
    updateTime           datetime             null,
    constraint PK_META_MODEL primary key nonclustered (ID)
-)
-go
+);
 
 if exists (select 1 from  sys.extended_properties
            where major_id = object_id('meta_model') and minor_id = 0)
@@ -270,8 +256,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '元数据实体表',
-   'user', @CurrentUser, 'table', 'meta_model'
-go
+   'user', @CurrentUser, 'table', 'meta_model';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_model')
@@ -289,8 +274,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '自增长主键',
-   'user', @CurrentUser, 'table', 'meta_model', 'column', 'ID'
-go
+   'user', @CurrentUser, 'table', 'meta_model', 'column', 'ID';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_model')
@@ -308,8 +292,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '唯一标识',
-   'user', @CurrentUser, 'table', 'meta_model', 'column', 'uid'
-go
+   'user', @CurrentUser, 'table', 'meta_model', 'column', 'uid';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_model')
@@ -327,8 +310,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '名称',
-   'user', @CurrentUser, 'table', 'meta_model', 'column', 'name'
-go
+   'user', @CurrentUser, 'table', 'meta_model', 'column', 'name';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_model')
@@ -346,8 +328,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '数据库表名',
-   'user', @CurrentUser, 'table', 'meta_model', 'column', 'dbObjectName'
-go
+   'user', @CurrentUser, 'table', 'meta_model', 'column', 'dbObjectName';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_model')
@@ -365,8 +346,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '别名',
-   'user', @CurrentUser, 'table', 'meta_model', 'column', 'alias'
-go
+   'user', @CurrentUser, 'table', 'meta_model', 'column', 'alias';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_model')
@@ -384,8 +364,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '描述',
-   'user', @CurrentUser, 'table', 'meta_model', 'column', 'description'
-go
+   'user', @CurrentUser, 'table', 'meta_model', 'column', 'description';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_model')
@@ -403,8 +382,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '分类',
-   'user', @CurrentUser, 'table', 'meta_model', 'column', 'category'
-go
+   'user', @CurrentUser, 'table', 'meta_model', 'column', 'category';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_model')
@@ -422,8 +400,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '是否可查询',
-   'user', @CurrentUser, 'table', 'meta_model', 'column', 'isVisible'
-go
+   'user', @CurrentUser, 'table', 'meta_model', 'column', 'isVisible';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_model')
@@ -441,8 +418,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '是否可编辑',
-   'user', @CurrentUser, 'table', 'meta_model', 'column', 'isEditable'
-go
+   'user', @CurrentUser, 'table', 'meta_model', 'column', 'isEditable';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_model')
@@ -460,8 +436,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '创建时间',
-   'user', @CurrentUser, 'table', 'meta_model', 'column', 'createTime'
-go
+   'user', @CurrentUser, 'table', 'meta_model', 'column', 'createTime';
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('meta_model')
@@ -479,5 +454,4 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description',
    '更新时间',
-   'user', @CurrentUser, 'table', 'meta_model', 'column', 'updateTime'
-go
+   'user', @CurrentUser, 'table', 'meta_model', 'column', 'updateTime';
