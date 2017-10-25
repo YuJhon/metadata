@@ -1,6 +1,8 @@
 package com.ryo.metadata.core.util;
 
 import com.ryo.metadata.core.util.vo.JdbcVo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.SQLExec;
 import org.apache.tools.ant.types.EnumeratedAttribute;
@@ -12,9 +14,13 @@ import java.nio.file.Files;
 
 /**
  * 数据库脚本执行工具类
+ * @see MybatisSqlExecUtil 通过 mybatis 的实现。
  * Created by bbhou on 2017/10/23.
  */
+@Deprecated
 public class SqlExecUtil {
+
+    private static final Logger LOGGER = LogManager.getLogger(SqlExecUtil.class);
 
     /**
      * 执行
@@ -49,7 +55,13 @@ public class SqlExecUtil {
         sqlExec.execute();
 
         //4. 删除文件
-        tempFile.deleteOnExit();
+        if(tempFile.exists()) {
+            boolean isDelete = tempFile.delete();
+            LOGGER.info("Temp file delete result: " + isDelete);
+        }
+
+//        sqlExec.get
+//        tempFile.deleteOnExit();
     }
 
 

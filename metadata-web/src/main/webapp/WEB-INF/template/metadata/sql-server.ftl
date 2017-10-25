@@ -87,7 +87,6 @@
                         alert("success");
                     },
                     error: function (result) {
-                        console.log("result: "+result.success);
                         alert("error");
                     }
 

@@ -8,6 +8,7 @@ public class DBClassNameConstant {
 
     /**
      * SQL Server 数据库
+     * com.microsoft.sqlserver.jdbc.
      */
     public static final String SQL_SERVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 

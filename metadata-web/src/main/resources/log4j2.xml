@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="off" monitorInterval="1800">
     <properties>
-        <property name="LOG_HOME">/Users/houbinbin/logs/log4j2/metadata</property>
+        <property name="LOG_HOME">${sys:user.home}/logs/log4j2/metadata</property>
         <property name="BACKUP_HOME">${LOG_HOME}/backup</property>
         <property name="SERVER_NAME">global</property>
 

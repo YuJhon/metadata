@@ -5,6 +5,7 @@ import com.ryo.metadata.core.dal.JdbcMapper;
 import com.ryo.metadata.core.dal.impl.MySqlDBMapper;
 import com.ryo.metadata.core.dal.impl.MySqlJdbcMapper;
 import com.ryo.metadata.core.util.CoreSqlPathUtil;
+import com.ryo.metadata.core.util.MybatisSqlExecUtil;
 import com.ryo.metadata.core.util.SqlExecUtil;
 import com.ryo.metadata.core.util.vo.JdbcVo;
 import org.apache.logging.log4j.LogManager;
@@ -34,7 +35,7 @@ public class MySqlDBService extends AbstractDBService {
     @Override
     protected void createMetadataTables() throws Exception {
         LOGGER.info("============================== createMetadataTables START");
-        SqlExecUtil.execute(this.jdbcVo, CoreSqlPathUtil.getMysqlInputStream());
+        MybatisSqlExecUtil.execute(this.jdbcVo, CoreSqlPathUtil.getMysqlInputStream());
         LOGGER.info("============================== createMetadataTables END");
     }
 

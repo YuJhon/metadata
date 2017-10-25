@@ -1,7 +1,7 @@
 <#assign title="mysql">
 
 <@override name="style">
-    <link rel="stylesheet" href="/static/app/css/about.css" type="text/css"/>
+<link rel="stylesheet" href="/static/app/css/about.css" type="text/css"/>
 </@override>
 
 <@override name="content">
@@ -57,47 +57,50 @@
 
 <@override name="script">
 
-    <script>
+<script>
 
-        //1. 如果某一个字段缺失  会导致400
-        $(function () {
-            $("#execute").on('click', function () {
-                var host = $("#host-input").val();
-                var port = $("#port-input").val();
-                var database = $("#database-input").val();
-                var username = $("#username-input").val();
-                var password = $("#password-input").val();
+    $(function () {
+
+        $("#execute").on('click', function () {
+            var host = $("#host-input").val();
+            var port = $("#port-input").val();
+            var database = $("#database-input").val().trim();
+            var username = $("#username-input").val();
+            var password = $("#password-input").val();
 //
-//                if(!database) {
-//                    layer.msg("database 不可以为空!");
-//                    return false;   //如果是 return true; 页面会重新加载
-//                }
+            if (!database) {
+                layer.msg("database 不可以为空!");
+                return false;   //如果是 return true; 页面会重新加载
+            }
 
-                $.ajax({
-                    type: 'POST',
-                    url: "/metadata/mysql/execute",
-                    data: {
-                        host: host,
-                        port: port,
-                        database: database,
-                        username: username,
-                        password: password
-                    },
-                    dataType: 'json',
-                    success: function (result) {
-                        console.log(result);
-                        alert("success");
-                    },
-                    error: function (result) {
-                        console.log("result: "+result.success);
-                        alert("error");
-                    }
-
-                })
+            alert("开始执行 ajax!");
+            $.ajax({
+                type: 'POST',
+                url: "/metadata/mysql/execute",
+                timeout: 30000, //30S
+                data: {
+                    host: host,
+                    port: port,
+                    database: database,
+                    username: username,
+                    password: password
+                },
+                dataType: 'json',
+                success: function (result) {
+                    console.log(result)
+                    alert("success");
+                },
+                error: function (result) {
+                    alert("error");
+//                    App.sysErrorMsg();
+                }
             });
-        });
 
-    </script>
+        });
+            
+    });
+
+</script>
 
 </@override>
 
