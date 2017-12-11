@@ -36,69 +36,45 @@
 
 # 文档说明
 
+## maven
+
 (本项目依赖于maven)
+本地部署好 maven
+
+```
+$   mvn clean install
+```
+
+## tomcat
+
+将 war 部署到 tomcat 下运行，或者 
+
+运行 `metadata-web` 下的 tomcat7 插件。
+
+浏览器打开 [http://localhost:18082/](http://localhost:18082/)
+
+
+# 使用方式
 
 ## MySql 使用方式
 
-- 执行脚本
 
-```
-${ROOT}\metadata-test\src\main\resources\sql\mysql\init.sql
-```
+在 mysql 页面输入数据库的指定数据库链接信息，点击 【Execute】按钮即可。
 
-- 配置数据库连接
+ 
+| 属性| 描述 | 默认值 |
+|:----|:----|:----|
+| Host        | 地址              | localhost | 
+| Port        | 端口号             | 3306 | 
+| DataBase    | 数据库名称   | |
+| Username    | 用户名称 | root |
+| Password    | 密码 | 123456 |
 
-```
-${ROOT}\metadata-test\src\main\resources\jdbc_mysql.properties
-```
+![medata-mysql.png](medata-mysql.png)
 
-- 运行测试案例
-
-```
-${ROOT}\metadata-test\src\test\java\com\ryo\metadata\test\core\service\MySqlDBServiceTest.java
-```
 
 ## SQL Server 的使用方式
 
-- lib 
 
-首先将 lib 文件下的 sqljdbc4.jar 文件加在到项目中。后面与 mysql 一致。
-
-- 执行脚本
-
-```
-${ROOT}\metadata-test\src\main\resources\sql\sqlserver\init.sql
-```
-
-- 配置数据库连接
-
-```
-${ROOT}\metadata-test\src\main\resources\jdbc_mysql.properties
-```
-
-- 运行测试案例
-
-```
-${ROOT}\metadata-test\src\test\java\com\ryo\metadata\test\core\service\SqlServerDBServiceTest.java
-```
-
-
-# TODO
-
-- 触发器
-
-当添加字段时候，自动更新对应 metadata 表信息。
-
-- 数据库连接池
-
-为提高性能，手写个数据库连接池。
-
-- 同时执行多条SQL
-
-为简化调用，同时执行多条SQL;
-
-- 简化使用
-
-页面配置好数据源。直接点击按钮即可。
-
+和上面类似。
 
