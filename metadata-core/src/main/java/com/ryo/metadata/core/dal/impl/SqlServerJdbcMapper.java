@@ -7,7 +7,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Created by bbhou on 2017/8/1.
+ *
+ * @author bbhou
+ * @date 2017/8/1
  */
 public class SqlServerJdbcMapper extends AbstractJdbcMapper {
 
@@ -19,10 +21,9 @@ public class SqlServerJdbcMapper extends AbstractJdbcMapper {
     protected Connection getConnection() {
         try {
             Class.forName(jdbcVo.getDriverClassName());
-            Connection connection = DriverManager.getConnection(jdbcVo.getUrl(),
+            return DriverManager.getConnection(jdbcVo.getUrl(),
                     jdbcVo.getUsername(),
                     jdbcVo.getPassword());
-            return connection;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

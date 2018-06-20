@@ -7,7 +7,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.UUID;
 
 /**
- * Created by bbhou on 2017/8/2.
+ * UUID 生成器
+ * @author bbhou
+ * @date 2017/8/2
  */
 public class UUIDGenerator implements IdGenerator {
 

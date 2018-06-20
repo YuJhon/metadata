@@ -65,27 +65,6 @@
                 <artifactId>metadata-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.ryo</groupId>
-                <artifactId>metadata-mongodb</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ryo</groupId>
-                <artifactId>metadata-mysql</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ryo</groupId>
-                <artifactId>metadata-oracle</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ryo</groupId>
-                <artifactId>metadata-sqlserver</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
             <!--============================== OTHER ==============================-->
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
             <dependency>

@@ -2,7 +2,9 @@ package com.ryo.metadata.core.constant;
 
 /**
  * 实体名称常量定义
- * Created by bbhou on 2017/8/2.
+ *
+ * @author bbhou
+ * @date 2017/8/2
  */
 public class EntityConstant {
 

@@ -10,7 +10,10 @@
 
 sql server connection jar;
 
+- ojdbc7.jar
 
+(3,397,734 bytes) - (SHA1 Checksum: a2348e4944956fac05235f7cd5d30bf872afb157) 
+Certified with JDK7 and JDK8;
 
 
 

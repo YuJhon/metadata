@@ -43,6 +43,13 @@
             <systemPath>${project.basedir}/../lib/sqljdbc4.jar</systemPath>
         </dependency>
         <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>jdk7-8</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/ojdbc7.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>org.apache.ant</groupId>
             <artifactId>ant</artifactId>
         </dependency>

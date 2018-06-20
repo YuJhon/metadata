@@ -13,7 +13,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Created by bbhou on 2017/8/1.
+ *
+ * @author bbhou
+ * @date 2017/8/1
  */
 public class SqlServerDBService extends AbstractDBService {
 
@@ -26,13 +28,11 @@ public class SqlServerDBService extends AbstractDBService {
     @Override
     protected DBMapper getDbMapper() {
         return new SqlServerDBMapper(jdbcVo);
-//        return SingletonUtil.getSingleInstance(SqlServerDBMapper.class);
     }
 
     @Override
     protected JdbcMapper getJdbcMapper() {
         return new SqlServerJdbcMapper(jdbcVo);
-//        return SingletonUtil.getSingleInstance(SqlServerJdbcMapper.class);
     }
 
     @Override

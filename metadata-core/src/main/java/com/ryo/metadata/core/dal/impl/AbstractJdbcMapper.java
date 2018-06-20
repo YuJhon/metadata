@@ -9,7 +9,9 @@ import java.sql.*;
 import java.util.List;
 
 /**
- * Created by bbhou on 2017/8/1.
+ *
+ * @author bbhou
+ * @date 2017/8/1
  */
 public abstract class AbstractJdbcMapper implements JdbcMapper {
 
@@ -42,7 +44,7 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
     }
 
     @Override
-    public void execute(String sql) throws SQLException {
+    public void execute(String sql) {
         try(Connection connection = getConnection()) {
             Statement statement = connection.createStatement();
             statement.execute(sql);
@@ -52,24 +54,18 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
     }
 
     @Override
-    public void executeBatch(List<String> stringList) throws SQLException {
+    public void executeBatch(List<String> stringList) {
         LOGGER.info("executeBatch with sql: "+ stringList);
 
-        Connection connection = getConnection();
-        try {
-//            connection.setAutoCommit(true);
+        try (Connection connection = getConnection()) {
             Statement statement = connection.createStatement();
-            for(String sql : stringList) {
+            for (String sql : stringList) {
                 statement.addBatch(sql);
                 LOGGER.debug(sql);
             }
             statement.executeBatch();
         } catch (SQLException e) {
-            LOGGER.error("executeBatch meet ex: "+e, e);
-        } finally {
-            if(connection != null) {
-                connection.close();
-            }
+            LOGGER.error("executeBatch meet ex: " + e, e);
         }
 
     }

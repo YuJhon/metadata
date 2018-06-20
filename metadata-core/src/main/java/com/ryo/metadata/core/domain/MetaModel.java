@@ -3,8 +3,10 @@ package com.ryo.metadata.core.domain;
 import java.util.Date;
 
 /**
- * 原生-实体类
- * Created by bbhou on 2017/7/31.
+ * 原生实体类
+ *
+ * @author bbhou
+ * @date 2017/7/31
  */
 public class MetaModel {
 

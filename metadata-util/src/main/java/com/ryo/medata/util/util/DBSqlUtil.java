@@ -12,7 +12,9 @@ import java.util.Map;
 
 /**
  * 数据库 SQL 工具类
- * Created by bbhou on 2017/8/1.
+ *
+ * @author bbhou
+ * @date 2017/8/1
  */
 public class DBSqlUtil {
 
@@ -20,12 +22,11 @@ public class DBSqlUtil {
 
     /**
      * 清空一张表
-     * @param tableName
-     * @return
+     * @param tableName 表名称
+     * @return SQL
      */
     public static String truncateTable(String tableName) {
-        String sql = String.format("TRUNCATE TABLE %s;", tableName);
-        return sql;
+        return String.format("TRUNCATE TABLE %s;", tableName);
     }
 
     /**
@@ -40,7 +41,7 @@ public class DBSqlUtil {
      */
     public static String insert(String tableName, Object object, Map<String, String> fieldsMapping) throws IllegalAccessException {
         StringBuilder sqlBuilder = new StringBuilder();
-        sqlBuilder.append("insert into "+tableName);
+        sqlBuilder.append("insert into ").append(tableName);
         String fields = buildFields(object, fieldsMapping);
         sqlBuilder.append(fields);
         return sqlBuilder.toString();
@@ -95,8 +96,8 @@ public class DBSqlUtil {
             String tableFieldName = getTableFieldName(fieldName, fieldsMapping);
             String fieldValueStr = getFieldValueStr(fieldType, fieldValue);
 
-            fieldsBuilder.append(tableFieldName+", ");
-            valuesBuilder.append("'"+fieldValueStr+"', ");
+            fieldsBuilder.append(tableFieldName).append(", ");
+            valuesBuilder.append("'").append(fieldValueStr).append("', ");
         }
 
         //2. 去掉多余的 ,

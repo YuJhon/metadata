@@ -21,10 +21,9 @@ import java.util.Objects;
 /**
  * 数据库脚本执行工具类
  * 这里应该重写，见：
+ * @author houbinbin
  * @see com.ryo.metadata.core.dal.impl.MySqlDBMapper
  * @see com.ryo.metadata.core.dal.impl.SqlServerDBMapper
- * Created by bbhou on 2017/10/23.
- *
  */
 public class MybatisSqlExecUtil {
 
@@ -33,10 +32,7 @@ public class MybatisSqlExecUtil {
     static {
         try {
             Class.forName(DBClassNameConstant.MYSQL).newInstance();
-
             //TODO: 这个真实部署到 tomcat 会报错！
-
-
             Class.forName(DBClassNameConstant.SQL_SERVER).newInstance();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
             LOGGER.error("Init jdbc driver meet ex: " + e, e);
@@ -54,22 +50,17 @@ public class MybatisSqlExecUtil {
         final String username = jdbcVo.getUsername();
         final String password = jdbcVo.getPassword();
 
-        Connection conn = null;
-        try {
+        try (Connection conn = DriverManager.getConnection(url, username, password)) {
             //TODO: 加在驱动时  前端会直接结束！为什么？
-            conn = DriverManager.getConnection(url, username, password);
             Reader reader = new InputStreamReader(inputStream);
             ScriptRunner runner = new ScriptRunner(conn);
-            Resources.setCharset(StandardCharsets.UTF_8);   //设置字符集,不然中文乱码插入错误
-            runner.setLogWriter(new PrintWriter(System.out));   //设置是否输出日志
+            //设置字符集,不然中文乱码插入错误
+            Resources.setCharset(StandardCharsets.UTF_8);
+            //设置是否输出日志
+            runner.setLogWriter(new PrintWriter(System.out));
             runner.runScript(reader);
             runner.closeConnection();
-        } finally {
-            if(conn != null) {
-                conn.close();
-            }
         }
-
     }
 
 

@@ -3,7 +3,9 @@ package com.ryo.medata.util.util;
 
 
 /**
- * Created by bbhou on 2017/7/6.
+ * 参数工具类
+ * @author bbhou
+ * @date 2017/7/6
  */
 public class ArgUtil {
 
@@ -35,7 +37,7 @@ public class ArgUtil {
      * 校验字符串非空
      * @param string 待检查的字符串
      * @param name 字符串的名称
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException 非法入参
      */
     public static void notEmpty(String string, String name) throws IllegalArgumentException {
         if(StringUtil.isEmpty(string)) {

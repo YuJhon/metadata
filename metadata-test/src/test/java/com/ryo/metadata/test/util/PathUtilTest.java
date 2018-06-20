@@ -12,6 +12,5 @@ public class PathUtilTest {
     public void pathTest() {
         System.out.println(PathUtil.getPath());
         System.out.println(PathUtil.getRootPath());
-//        System.out.println(PathUtil.getWebRootPath());
     }
 }

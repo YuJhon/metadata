@@ -29,16 +29,14 @@ public class MySqlDBMapper extends AbstractDBMapper {
     @Override
     protected String selectAllTablesSql() {
         String dbName = getDatabaseName();
-        String sql = "SELECT TABLE_NAME, TABLE_COMMENT FROM information_schema.tables WHERE TABLE_SCHEMA='"+dbName+"';";
-        return sql;
+        return "SELECT TABLE_NAME, TABLE_COMMENT FROM information_schema.tables WHERE TABLE_SCHEMA='"+dbName+"';";
     }
 
     @Override
     protected String selectAllFieldsSql(String tableName) {
         String dbName = getDatabaseName();
-        String sql = "SELECT TABLE_SCHEMA, COLUMN_NAME, IS_NULLABLE, DATA_TYPE, COLUMN_COMMENT " +
+        return "SELECT TABLE_SCHEMA, COLUMN_NAME, IS_NULLABLE, DATA_TYPE, COLUMN_COMMENT " +
                 "FROM information_schema.columns where TABLE_NAME='"+tableName+"' AND TABLE_SCHEMA='"+dbName+"';";
-        return sql;
     }
 
 }

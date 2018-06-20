@@ -7,7 +7,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Created by bbhou on 2017/8/1.
+ *
+ * @author bbhou
+ * @date 2017/8/1
  */
 public class MySqlJdbcMapper extends AbstractJdbcMapper {
 

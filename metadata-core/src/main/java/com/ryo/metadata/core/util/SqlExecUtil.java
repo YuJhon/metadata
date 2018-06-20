@@ -14,8 +14,8 @@ import java.nio.file.Files;
 
 /**
  * 数据库脚本执行工具类
+ * @author houbinbin
  * @see MybatisSqlExecUtil 通过 mybatis 的实现。
- * Created by bbhou on 2017/10/23.
  */
 @Deprecated
 public class SqlExecUtil {
@@ -51,7 +51,8 @@ public class SqlExecUtil {
         //如果有出错的语句继续执行.
         sqlExec.setOnerror((SQLExec.OnError) (EnumeratedAttribute.getInstance(SQLExec.OnError.class, "continue")));
         sqlExec.setPrint(true);
-        sqlExec.setProject(new Project()); // 要指定这个属性，不然会出错
+        // 要指定这个属性，不然会出错
+        sqlExec.setProject(new Project());
         sqlExec.execute();
 
         //4. 删除文件
@@ -59,9 +60,6 @@ public class SqlExecUtil {
             boolean isDelete = tempFile.delete();
             LOGGER.info("Temp file delete result: " + isDelete);
         }
-
-//        sqlExec.get
-//        tempFile.deleteOnExit();
     }
 
 

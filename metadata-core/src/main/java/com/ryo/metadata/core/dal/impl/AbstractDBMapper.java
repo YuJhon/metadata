@@ -20,7 +20,9 @@ import java.util.List;
 /**
  * 数据库访问层
  * 1.对于ID的生成策略可以暴露接口。
- * Created by bbhou on 2017/8/2.
+ *
+ * @author bbhou
+ * @date 2017/8/2
  */
 public abstract class AbstractDBMapper implements DBMapper {
 
@@ -56,7 +58,8 @@ public abstract class AbstractDBMapper implements DBMapper {
      */
     protected String getDatabaseName() {
         try(Connection connection = getJdbcMapper().metaData().getConnection()) {
-            return connection.getCatalog();    //数据库名称
+            //数据库名称
+            return connection.getCatalog();
         } catch (SQLException e) {
             LOGGER.error("getDatabaseName meet ex: "+e, e);
         }
@@ -68,14 +71,14 @@ public abstract class AbstractDBMapper implements DBMapper {
         List<MetaModel> metaModelList = new LinkedList<>();
 
         try {
-//            DatabaseMetaData databaseMetaData = JDBC_MAPPER.metaData();
-//            ResultSet resultSet = databaseMetaData.getTables(null, null, null, new String[]{"TABLE"});
             String sql = selectAllTablesSql();
             ResultSet resultSet = getJdbcMapper().query(sql);
             while(resultSet.next()) {
                 String uid = idGenerator.genId();
-                String tableName = resultSet.getString(1);  //表名称
-                String comment = resultSet.getString(2);    //注释
+                //表名称
+                String tableName = resultSet.getString(1);
+                //注释
+                String comment = resultSet.getString(2);
                 MetaModel metaModel = new MetaModel();
                 metaModel.setUid(uid);
                 metaModel.setName(tableName);
@@ -95,7 +98,8 @@ public abstract class AbstractDBMapper implements DBMapper {
     public List<MetaField> selectAllFields(String tableName) {
         List<MetaField> metaFieldList = new LinkedList<>();
         String sql = selectAllFieldsSql(tableName);
-        ResultSet resultSet = getJdbcMapper().query(sql);    //指定需要的列信息
+        //指定需要的列信息
+        ResultSet resultSet = getJdbcMapper().query(sql);
         try {
             while(resultSet.next()) {
                 String uid = idGenerator.genId();

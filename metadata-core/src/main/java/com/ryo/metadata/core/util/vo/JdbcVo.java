@@ -1,7 +1,9 @@
 package com.ryo.metadata.core.util.vo;
 
 /**
- * Created by bbhou on 2017/8/1.
+ *
+ * @author bbhou
+ * @date 2017/8/1
  */
 public class JdbcVo {
 

@@ -11,19 +11,28 @@ import java.net.URL;
 
 /**
  * 彻底搞清楚 web 项目中路径问题。
- * Created by bbhou on 2017/9/26.
+ *
+ * @author bbhou
+ * @date 2017/9/26
  */
 public class CoreSqlPathUtil {
 
     private static final Logger LOGGER = LogManager.getLogger(CoreSqlPathUtil.class);
 
     /**
-     * 文件路径
+     * MySQL 文件路径
      */
     private static final String MYSQL_PATH = "coreMysql.sql";
 
+    /**
+     * SQL-SERVER 文件路径
+     */
     private static final String SQL_SERVER_PATH = "coreSqlServer.sql";
 
+    /**
+     * ORACLE 文件路径
+     */
+    private static final String ORACLE_PATH = "coreOracle.sql";
 
     /**
      * 获取文件对应输入流
@@ -57,9 +66,6 @@ public class CoreSqlPathUtil {
     }
 
 
-    /**
-     * @return
-     */
     public static InputStream getMysqlInputStream() throws Exception {
         return getInputStream(MYSQL_PATH);
     }

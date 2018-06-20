@@ -1,7 +1,7 @@
 package com.ryo.metadata.core.util.factory;
 
 import com.ryo.medata.util.util.PathUtil;
-import com.ryo.metadata.core.util.PropertiesIOUtil;
+import com.ryo.metadata.core.util.PropertiesIoUtil;
 import com.ryo.metadata.core.util.vo.JdbcVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,13 +59,13 @@ public class JdbcFactory {
      * @return
      */
     private static JdbcVo buildJdbcVo(String propertyPath) throws ClassNotFoundException {
-        PropertiesIOUtil.loadProperties(propertyPath);
+        PropertiesIoUtil.loadProperties(propertyPath);
 
         JdbcVo jdbcVo = new JdbcVo();
-        jdbcVo.setDriverClassName(PropertiesIOUtil.getProperty("jdbc.driverClassName"));
-        jdbcVo.setUrl(PropertiesIOUtil.getProperty("jdbc.url"));
-        jdbcVo.setUsername(PropertiesIOUtil.getProperty("jdbc.username"));
-        jdbcVo.setPassword(PropertiesIOUtil.getProperty("jdbc.password"));
+        jdbcVo.setDriverClassName(PropertiesIoUtil.getProperty("jdbc.driverClassName"));
+        jdbcVo.setUrl(PropertiesIoUtil.getProperty("jdbc.url"));
+        jdbcVo.setUsername(PropertiesIoUtil.getProperty("jdbc.username"));
+        jdbcVo.setPassword(PropertiesIoUtil.getProperty("jdbc.password"));
         return jdbcVo;
     }
 

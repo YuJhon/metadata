@@ -10,9 +10,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * 单例工具方法
  * 需要对象提供空构造器
  * 1. 此方法可以写的更加简单，不需要对象实现任何接口。直接传入就可以调用。
+ * @author houbinbin
  * @since 1.7
  * @see Singleton 单例接口
- * Created by bbhou on 2017/8/2.
  */
 public class SingletonUtil {
 

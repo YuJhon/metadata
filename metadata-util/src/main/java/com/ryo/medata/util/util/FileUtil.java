@@ -4,16 +4,16 @@ package com.ryo.medata.util.util;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by houbinbin on 16/5/28.
+ * 文件工具类
+ * @author houbinbin
+ * @date 16/5/28
  */
 public final class FileUtil {
-
-    private FileUtil() {
-    }
 
     /**
      * 获取文件内容
@@ -76,8 +76,8 @@ public final class FileUtil {
     /**
      * 获取文件后缀
      *
-     * @param fileName
-     * @return
+     * @param fileName 文件名称
+     * @return 文件后缀
      */
     public static String getSuffix(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
@@ -148,29 +148,28 @@ public final class FileUtil {
             return contentList;
         }
 
-        String charset = "UTF-8";  //暂时使用此编码
+        //暂时使用此编码
+        String charset = "UTF-8";
         try (FileInputStream fileInputStream = new FileInputStream(file);
              InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, charset);
              BufferedReader bufferedReader = new BufferedReader(inputStreamReader)
         ) {
-            int lineNo = 0;// 用于记录行号
+            // 用于记录行号
+            int lineNo = 0;
             while (lineNo < initLine) {
                 lineNo++;
                 bufferedReader.readLine();
             }
 
-            String dataEachLine;   //每一行的内容
+            //每一行的内容
+            String dataEachLine;
             while ((dataEachLine = bufferedReader.readLine()) != null) {
                 lineNo++;
-                //跳过空白行
-//                if (StringUtil.isBlank(dataEachLine)) {
-//                    continue;
-//                }
                 contentList.add(dataEachLine);
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return ListUtil.EMPTY_LIST;
+            return Collections.emptyList();
         }
 
         return contentList;
@@ -211,13 +210,13 @@ public final class FileUtil {
      */
     public static List<String> sameFieldsWithDev(final String devPath, final String rawPath)
     {
-        final String DEV = "_dev.";
+        final String dev = "_dev.";
         List<String> result = new LinkedList<>();
         List<String> originalList = sameFields(devPath, rawPath);
 
         for(String original : originalList)
         {
-            String content = DEV+original;
+            String content = dev+original;
             result.add(content);
         }
         return result;
@@ -249,12 +248,6 @@ public final class FileUtil {
         }
 
         return sqlList;
-    }
-
-    public static void main(String[] args) throws Exception {
-
-        System.out.println(getFileContent("file:/Users/houbinbin/IT/tools/tomcat/tomcat8/webapps/ROOT/WEB-INF/lib/metadata-core-1.0-SNAPSHOT.jar!/sql/mysql.sql"));
-//        System.out.println(loadSql("D:\\CODE\\metadata\\metadata-test\\src\\main\\resources\\sql\\mysql\\init.sql").size());
     }
 
 }

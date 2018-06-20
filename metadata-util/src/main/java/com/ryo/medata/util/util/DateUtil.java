@@ -5,17 +5,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by bbhou on 2017/8/1.
+ * 日期工具类
+ * @author bbhou
+ * @date 2017/8/1
  */
 public class DateUtil {
 
-    public static final String DATE_TIME_FORMAT = "YYYY-MM-dd HH:mm:ss.SSS";
+    private static final String DATE_TIME_FORMAT = "YYYY-MM-dd HH:mm:ss.SSS";
 
 
     /**
      * 获取日期对应的字符串
-     * @param date
-     * @return
+     * @param date 日期
+     * @return 对应的字符串
      */
     public static String getDateStr(Date date) {
         DateFormat dateFormat = new SimpleDateFormat(DATE_TIME_FORMAT);

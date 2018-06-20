@@ -1,7 +1,9 @@
 package com.ryo.medata.util.util;
 
 /**
- * Created by bbhou on 2017/7/31.
+ * 字符串-工具类
+ * @author bbhou
+ * @date 2017/7/31
  */
 public class StringUtil {
 

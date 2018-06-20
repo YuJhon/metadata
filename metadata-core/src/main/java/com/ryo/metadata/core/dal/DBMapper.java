@@ -9,9 +9,11 @@ import java.util.List;
 
 /**
  * 数据库访问层
- * Created by bbhou on 2017/7/31.
+ *
+ * @author bbhou
+ * @date 2017/7/31
  */
-public interface DBMapper extends Singleton {
+public interface DBMapper {
 
     /**
      * 查询所有得标信息

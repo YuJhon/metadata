@@ -6,7 +6,9 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
- * Created by houbinbin on 16/5/25.
+ *
+ * @author houbinbin
+ * @date 16/5/25
  */
 public class PathUtil {
 
@@ -40,13 +42,6 @@ public class PathUtil {
             e.printStackTrace();
         }
         return realPath + File.separator;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(getRootPath());
-        System.out.println(getPath());
-//        String content = getPath()+"/metadata-core/src/main/resources/sql/mysql.sql";
-//        System.out.println(FileUtil.getFileContent(content));
     }
 
 }

@@ -3,21 +3,41 @@ package com.ryo.metadata.core.domain;
 import java.util.Date;
 
 /**
- * 原生-字段
- * Created by bbhou on 2017/7/31.
+ * 原生字段
+ *
+ * @author bbhou
+ * @date 2017/7/31
  */
 public class MetaField {
 
+    /**
+     * 唯一标识
+     */
     private String uid;
 
+    /**
+     * 字段名称
+     */
     private String name;
 
+    /**
+     * 别名
+     */
     private String alias;
 
+    /**
+     * 数据库名称
+     */
     private String dbObjectName;
 
+    /**
+     * 字段描述
+     */
     private String description;
 
+    /**
+     * 数据类型
+     */
     private String dataType;
 
     /**
@@ -25,8 +45,14 @@ public class MetaField {
      */
     private boolean isNullable;
 
+    /**
+     * 创建时间
+     */
     private Date createTime;
 
+    /**
+     * 更新时间
+     */
     private Date updateTime;
 
     public String getUid() {
