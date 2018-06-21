@@ -3,7 +3,7 @@ package com.ryo.metadata.web.dto.bean;
 /**
  * @author houbinbin
  * @version 1.0
- * @on 2017/9/7
+ * @date 2017/9/7
  * @since 1.7
  */
 public class CategoryBean {

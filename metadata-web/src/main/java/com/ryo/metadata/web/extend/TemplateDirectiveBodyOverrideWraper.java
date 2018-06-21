@@ -24,8 +24,11 @@ public class TemplateDirectiveBodyOverrideWraper implements TemplateDirectiveBod
         this.env = env;
     }
 
+    @Override
     public void render(Writer out) throws TemplateException, IOException {
-        if (body == null) return;
+        if (body == null) {
+            return;
+        }
         TemplateDirectiveBodyOverrideWraper preOverridy = (TemplateDirectiveBodyOverrideWraper) env.getVariable(DirectiveUtils.OVERRIDE_CURRENT_NODE);
         try {
             env.setVariable(DirectiveUtils.OVERRIDE_CURRENT_NODE, this);

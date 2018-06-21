@@ -18,22 +18,22 @@ public class ErrorController {
   private static final String PAGE_500 = BASE_PATH+"/500";
 
   @RequestMapping("/400")
-  public String Page400() {
+  public String page400() {
     return PAGE_400;
   }
 
   @RequestMapping("/403")
-  public String Page403() {
+  public String page403() {
     return PAGE_403;
   }
 
   @RequestMapping("/404")
-  public String Page404() {
+  public String page404() {
     return PAGE_404;
   }
 
   @RequestMapping("/500")
-  public String Page500() {
+  public String page500() {
     return PAGE_500;
   }
 

@@ -1,3 +1,9 @@
+/*==============================================================*/
+/* DB: 指定编码字符集 */
+/* SQL: alter database dbname collate Chinese_PRC_CI_AS */
+/*==============================================================*/
+
+
 if exists (select 1
             from  sysobjects
            where  id = object_id('meta_field')

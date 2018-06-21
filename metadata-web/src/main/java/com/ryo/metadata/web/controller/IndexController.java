@@ -34,9 +34,6 @@ public class IndexController {
      */
     @RequestMapping
     public String index(Model model) throws URISyntaxException {
-
-//        String path = CoreSqlPathUtil.getMysqlPath();
-//        LOGGER.info(">>>>>>> path: "+path);
         return INDEX_PATH;
     }
 

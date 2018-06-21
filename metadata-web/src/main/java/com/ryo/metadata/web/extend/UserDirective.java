@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by houbinbin on 16/6/26.
+ *
+ * @author houbinbin
+ * @date 16/6/26
  */
 @Component
 public class UserDirective extends SuperTag {

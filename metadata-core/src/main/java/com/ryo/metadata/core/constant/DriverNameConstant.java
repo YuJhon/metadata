@@ -6,7 +6,7 @@ package com.ryo.metadata.core.constant;
  * @author bbhou
  * @date 2017/7/31
  */
-public class DBClassNameConstant {
+public class DriverNameConstant {
 
     /**
      * SQL Server 数据库

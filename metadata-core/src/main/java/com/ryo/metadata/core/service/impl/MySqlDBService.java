@@ -4,6 +4,7 @@ import com.ryo.metadata.core.dal.DBMapper;
 import com.ryo.metadata.core.dal.JdbcMapper;
 import com.ryo.metadata.core.dal.impl.MySqlDBMapper;
 import com.ryo.metadata.core.dal.impl.MySqlJdbcMapper;
+import com.ryo.metadata.core.service.DBService;
 import com.ryo.metadata.core.util.CoreSqlPathUtil;
 import com.ryo.metadata.core.util.MybatisSqlExecUtil;
 import com.ryo.metadata.core.util.SqlExecUtil;
@@ -20,8 +21,23 @@ public class MySqlDBService extends AbstractDBService {
 
     private static final Logger LOGGER = LogManager.getLogger(MySqlDBService.class);
 
+
+
     public MySqlDBService(JdbcVo jdbcVo) {
         super(jdbcVo);
+    }
+
+    /**
+     * 获取对应单例信息
+     */
+    private static DBService service;
+    public static DBService getInstance(JdbcVo jdbcVo) {
+        if (service == null) {
+            synchronized (MySqlDBService.class) {
+                service = new MySqlDBService(jdbcVo);
+            }
+        }
+        return service;
     }
 
     @Override

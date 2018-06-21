@@ -236,6 +236,7 @@
                     <ul class="treeview-menu">
                         <li><a href="/metadata/mysql">MySql</a></li>
                         <li><a href="/metadata/sql-server">SqlServer</a></li>
+                        <li><a href="/metadata/oracle">Oracle</a></li>
                     </ul>
                 </li>
 

@@ -7,6 +7,7 @@ import com.ryo.metadata.core.domain.MetaModel;
 import com.ryo.metadata.core.service.IdGenerator;
 import com.ryo.metadata.core.service.impl.UUIDGenerator;
 import com.ryo.metadata.core.util.vo.JdbcVo;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,26 +27,28 @@ import java.util.List;
  */
 public abstract class AbstractDBMapper implements DBMapper {
 
+    private static final Logger      LOGGER      = LogManager.getLogger(AbstractDBMapper.class);
+    private static final IdGenerator idGenerator = new UUIDGenerator();
+
     protected JdbcVo jdbcVo;
 
     public AbstractDBMapper(JdbcVo jdbcVo) {
         this.jdbcVo = jdbcVo;
     }
 
-    private static final Logger LOGGER = LogManager.getLogger(AbstractDBMapper.class);
-
-    private static final IdGenerator idGenerator = new UUIDGenerator();
 
     protected abstract JdbcMapper getJdbcMapper();
 
     /**
      * 获取所有表信息的SQL
+     *
      * @return
      */
     protected abstract String selectAllTablesSql();
 
     /**
      * 获取所有字段信息的SQL\
+     *
      * @param tableName 表名称
      * @return
      */
@@ -53,15 +56,16 @@ public abstract class AbstractDBMapper implements DBMapper {
 
     /**
      * 获取数据库名称
-     * @since 1.7 TWR
+     *
      * @return
+     * @since 1.7 TWR
      */
     protected String getDatabaseName() {
-        try(Connection connection = getJdbcMapper().metaData().getConnection()) {
+        try (Connection connection = getJdbcMapper().metaData().getConnection()) {
             //数据库名称
             return connection.getCatalog();
         } catch (SQLException e) {
-            LOGGER.error("getDatabaseName meet ex: "+e, e);
+            LOGGER.error("getDatabaseName meet ex: " + e, e);
         }
         return null;
     }
@@ -73,7 +77,7 @@ public abstract class AbstractDBMapper implements DBMapper {
         try {
             String sql = selectAllTablesSql();
             ResultSet resultSet = getJdbcMapper().query(sql);
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 String uid = idGenerator.genId();
                 //表名称
                 String tableName = resultSet.getString(1);
@@ -88,7 +92,7 @@ public abstract class AbstractDBMapper implements DBMapper {
                 metaModelList.add(metaModel);
             }
         } catch (SQLException e) {
-            LOGGER.error("selectAllTables meet ex: "+e, e);
+            LOGGER.error("selectAllTables meet ex: " + e, e);
         }
 
         return metaModelList;
@@ -101,9 +105,9 @@ public abstract class AbstractDBMapper implements DBMapper {
         //指定需要的列信息
         ResultSet resultSet = getJdbcMapper().query(sql);
         try {
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 String uid = idGenerator.genId();
-                String dbObjectName = resultSet.getString(1)+"."+tableName;
+                String dbObjectName = resultSet.getString(1) + "." + tableName;
                 String columnName = resultSet.getString(2);
                 String isNullableStr = resultSet.getString(3);
                 String dataType = resultSet.getString(4);
@@ -135,6 +139,9 @@ public abstract class AbstractDBMapper implements DBMapper {
      */
     private boolean getBoolVal(String string) {
         if ("YES".equals(string)) {
+            return true;
+        }
+        if ("Y".equals(string)) {
             return true;
         } else {
             return false;

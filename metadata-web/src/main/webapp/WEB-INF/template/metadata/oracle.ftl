@@ -1,4 +1,4 @@
-<#assign title="mysql">
+<#assign title="oracle">
 
 <@override name="style">
 <link rel="stylesheet" href="/static/app/css/about.css" type="text/css"/>
@@ -19,21 +19,14 @@
     <div class="form-group">
         <label for="port-input" class="col-xs-2 control-label">Port</label>
         <div class="col-xs-8">
-            <input type="text" class="form-control" id="port-input" placeholder="3306">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="database-input" class="col-xs-2 control-label">DataBase</label>
-        <div class="col-xs-8">
-            <input type="text" class="form-control" id="database-input" placeholder="database" required="required">
+            <input type="text" class="form-control" id="port-input" placeholder="49161">
         </div>
     </div>
 
     <div class="form-group">
         <label for="username-input" class="col-xs-2 control-label">Username</label>
         <div class="col-xs-8">
-            <input type="text" class="form-control" id="username-input" placeholder="root">
+            <input type="text" class="form-control" id="username-input" placeholder="XE">
         </div>
     </div>
 
@@ -64,30 +57,23 @@
         $("#execute").on('click', function () {
             var host = $("#host-input").val();
             var port = $("#port-input").val();
-            var database = $("#database-input").val().trim();
             var username = $("#username-input").val();
             var password = $("#password-input").val();
-//
-            if (!database) {
-                layer.msg("database 不可以为空!");
-                return false;   //如果是 return true; 页面会重新加载
-            }
 
             alert("开始执行 ajax!");
             $.ajax({
                 type: 'POST',
-                url: "/metadata/mysql/execute",
+                url: "/metadata/oracle/execute",
                 timeout: 30000, //30S
                 data: {
                     host: host,
                     port: port,
-                    database: database,
                     username: username,
                     password: password
                 },
                 dataType: 'json',
                 success: function (result) {
-                    console.log(result);
+                    console.log(result)
                     alert("success");
                 },
                 error: function (result) {

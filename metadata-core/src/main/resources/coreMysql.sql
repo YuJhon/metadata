@@ -19,7 +19,8 @@ create table meta_field
    updateTime           datetime comment '更新时间',
    primary key (ID)
 )
-auto_increment = 1000;
+auto_increment = 1000
+DEFAULT CHARSET=utf8;
 
 alter table meta_field comment '元数据字段表';
 
@@ -41,6 +42,6 @@ create table meta_model
    updateTime           datetime comment '更新时间',
    primary key (ID)
 )
-auto_increment = 1000;
+DEFAULT CHARSET=utf8;
 
 alter table meta_model comment '元数据实体表';

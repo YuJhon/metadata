@@ -14,19 +14,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by houbinbin on 16/6/30.
- * - Controller 访问日志
+ * Controller 日志拦截器
+ * @author houbinbin
+ * @date 16/6/30
  */
 @Component
 @Aspect
 @Log4j2
 public class ControllerLogInterceptor {
 
-    private String requestPath = null; // 请求地址
-    private String userName = null; // 用户名
-    private Map<?, ?> inputParamMap = null; // 传入参数
-    private Map<?, ?> filterInputParamMap = new HashMap<>(); // 过滤后的传入参数
-    private Map<String, Object> outputParamMap = null; // 存放输出结果
+    /**
+     * 请求地址
+     */
+    private String requestPath = null;
+    /**
+     * 用户名
+     */
+    private String userName = null;
+    /**
+     * 传入参数
+     */
+    private Map<?, ?> inputParamMap = null;
+    /**
+     * 过滤后的传入参数
+     */
+    private Map<?, ?> filterInputParamMap = new HashMap<>();
+    /**
+     * 存放输出结果
+     */
+    private Map<String, Object> outputParamMap = null;
 
 
     @Pointcut("execution(public * com.ryo.metadata.web.controller..*.*(..))")
@@ -63,8 +79,9 @@ public class ControllerLogInterceptor {
 //        filterInputParamMap = filterInputParamMap(inputParamMap, requestPath);
 
         // 执行完方法的返回值：调用proceed()方法，就会触发切入点方法执行
-        outputParamMap = new HashMap<>();
-        Object result = point.proceed();    // result的值就是被拦截方法的返回值
+        outputParamMap = new HashMap<>(1);
+        // result的值就是被拦截方法的返回值
+        Object result = point.proceed();
         outputParamMap.put("result", result);
 
         return result;
@@ -75,24 +92,5 @@ public class ControllerLogInterceptor {
                 + "  URL：" + requestPath + "\n"
                 + "PARAM：" + JSON.toJSON(filterInputParamMap) + "\n" + "RESULT：" + JSON.toJSON(outputParamMap)+"\n");
     }
-
-
-    /**
-     * 忽略掉密码字段
-     * - inputParamMap 是不可变的
-     */
-//    private Map<?,?> filterInputParamMap(Map<?,?> inputParamMap, String requestPath) {
-//        Map<?, ?> filterInputParamMap = new HashMap<>(); // 过滤后的传入参数
-//
-//        if("/login".equals(requestPath) && MapUtils.isNotEmpty(inputParamMap)) {
-//            filterInputParamMap = new HashMap<>(inputParamMap);
-//            filterInputParamMap.remove("password");
-//            return filterInputParamMap;
-//        }
-//        if("/user/password".equals(requestPath)) {
-//            return filterInputParamMap;
-//        }
-//        return inputParamMap;
-//    }
 
 }

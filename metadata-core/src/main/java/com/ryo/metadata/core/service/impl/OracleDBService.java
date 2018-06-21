@@ -1,28 +1,34 @@
+/*
+ * Copyright (c)  2018. houbinbin Inc.
+ * metadata All rights reserved.
+ */
+
 package com.ryo.metadata.core.service.impl;
 
 import com.ryo.metadata.core.dal.DBMapper;
 import com.ryo.metadata.core.dal.JdbcMapper;
+import com.ryo.metadata.core.dal.impl.OracleDBMapper;
+import com.ryo.metadata.core.dal.impl.OracleJdbcMapper;
 import com.ryo.metadata.core.dal.impl.SqlServerDBMapper;
 import com.ryo.metadata.core.dal.impl.SqlServerJdbcMapper;
 import com.ryo.metadata.core.service.DBService;
 import com.ryo.metadata.core.util.CoreSqlPathUtil;
 import com.ryo.metadata.core.util.MybatisSqlExecUtil;
-import com.ryo.metadata.core.util.SingletonUtil;
-import com.ryo.metadata.core.util.SqlExecUtil;
 import com.ryo.metadata.core.util.vo.JdbcVo;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- *
+ * oracle 数据库实现
  * @author bbhou
  * @date 2017/8/1
  */
-public class SqlServerDBService extends AbstractDBService {
+public class OracleDBService extends AbstractDBService {
 
-    private static final Logger LOGGER = LogManager.getLogger(SqlServerDBService.class);
+    private static final Logger LOGGER = LogManager.getLogger(OracleDBService.class);
 
-    public SqlServerDBService(JdbcVo jdbcVo) {
+    public OracleDBService(JdbcVo jdbcVo) {
         super(jdbcVo);
     }
 
@@ -33,7 +39,7 @@ public class SqlServerDBService extends AbstractDBService {
     public static DBService getInstance(JdbcVo jdbcVo) {
         if (service == null) {
             synchronized (MySqlDBService.class) {
-                service = new SqlServerDBService(jdbcVo);
+                service = new OracleDBService(jdbcVo);
             }
         }
         return service;
@@ -41,12 +47,12 @@ public class SqlServerDBService extends AbstractDBService {
 
     @Override
     protected DBMapper getDbMapper() {
-        return new SqlServerDBMapper(jdbcVo);
+        return new OracleDBMapper(jdbcVo);
     }
 
     @Override
     protected JdbcMapper getJdbcMapper() {
-        return new SqlServerJdbcMapper(jdbcVo);
+        return new OracleJdbcMapper(jdbcVo);
     }
 
     @Override

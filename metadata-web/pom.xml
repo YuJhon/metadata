@@ -105,12 +105,21 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
         </dependency>
+
+        <!--备注：这种依赖一定要指定出来-->
         <dependency>
             <groupId>com.weiruan</groupId>
             <artifactId>sqljdbc4</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/../lib/sqljdbc4.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>jdk7-8</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../lib/ojdbc7.jar</systemPath>
         </dependency>
 
     </dependencies>

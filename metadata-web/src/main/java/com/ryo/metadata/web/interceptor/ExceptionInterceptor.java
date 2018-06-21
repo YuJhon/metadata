@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by 侯彬彬 on 2016/7/6.
+ *
+ * @author 侯彬彬
+ * @date 2016/7/6
  * preHandle在Controller被调用前，先执行，可以在这里执行一些安全检查（上面示意了如何对IP做限制）
 
  postHandle在Controller调用后执行，这时，可以修改ModelAndView，比如转到其它view之类
@@ -21,7 +23,7 @@ public class ExceptionInterceptor extends HandlerInterceptorAdapter {
     protected Logger logger = LogManager.getLogger();
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         if(ex != null) {
             logger.error("\n---------------------EXCEPTION START---------------------");
             logger.error(handler);

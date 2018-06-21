@@ -1,22 +1,16 @@
 package com.ryo.metadata.core.util;
 
-import com.ryo.metadata.core.constant.DBClassNameConstant;
+import com.ryo.metadata.core.constant.DriverNameConstant;
 import com.ryo.metadata.core.util.vo.JdbcVo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.tools.ant.Project;
-import org.apache.tools.ant.taskdefs.SQLExec;
-import org.apache.tools.ant.types.EnumeratedAttribute;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Objects;
 
 /**
  * 数据库脚本执行工具类
@@ -31,9 +25,9 @@ public class MybatisSqlExecUtil {
 
     static {
         try {
-            Class.forName(DBClassNameConstant.MYSQL).newInstance();
+            Class.forName(DriverNameConstant.MYSQL).newInstance();
             //TODO: 这个真实部署到 tomcat 会报错！
-            Class.forName(DBClassNameConstant.SQL_SERVER).newInstance();
+            Class.forName(DriverNameConstant.SQL_SERVER).newInstance();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
             LOGGER.error("Init jdbc driver meet ex: " + e, e);
         }
@@ -46,6 +40,7 @@ public class MybatisSqlExecUtil {
      * @param inputStream 待执行的脚本信息
      */
     public static void execute(JdbcVo jdbcVo, InputStream inputStream) throws Exception {
+        Class.forName(jdbcVo.getDriverClassName());
         final String url = jdbcVo.getUrl();
         final String username = jdbcVo.getUsername();
         final String password = jdbcVo.getPassword();

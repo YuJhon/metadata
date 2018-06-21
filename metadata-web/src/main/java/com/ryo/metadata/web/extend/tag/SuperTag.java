@@ -15,11 +15,20 @@ import java.util.Map;
  * <p>Equivalent to {@link org.apache.shiro.web.tags.SecureTag}</p>
  */
 public abstract class SuperTag implements TemplateDirectiveModel {
+    @Override
     public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
         verifyParameters(params);
         render(env, params, body);
     }
 
+    /**
+     * 页面渲染
+     * @param env
+     * @param params
+     * @param body
+     * @throws IOException
+     * @throws TemplateException
+     */
     public abstract void render(Environment env, Map params, TemplateDirectiveBody body) throws IOException, TemplateException;
 
     protected String getParam(Map params, String name) {
@@ -32,9 +41,6 @@ public abstract class SuperTag implements TemplateDirectiveModel {
         return null;
     }
 
-//    protected Subject getSubject() {
-//        return SecurityUtils.getSubject();
-//    }
 
     protected void verifyParameters(Map params) throws TemplateModelException {
     }

@@ -4,9 +4,13 @@ package com.ryo.metadata.web.dto.response;
 import com.ryo.metadata.web.dto.BaseDto;
 
 /**
- * Created by bbhou on 2017/9/13.
+ *
+ * @author bbhou
+ * @date 2017/9/13
  */
 public class BaseResponse extends BaseDto {
+
+    private static final long serialVersionUID = -2082789843811110077L;
 
     /**
      * 是否成功

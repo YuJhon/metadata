@@ -13,6 +13,9 @@ import java.io.Serializable;
  */
 public abstract class BaseDto implements Serializable {
 
+    private static final long serialVersionUID = 7261547071805451765L;
+
+    @Override
     public String toString() {
         try {
             return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);

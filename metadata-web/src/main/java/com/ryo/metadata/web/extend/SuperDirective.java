@@ -18,6 +18,7 @@ import java.util.Map;
 public class SuperDirective implements TemplateDirectiveModel {
     public final static String DIRECTIVE_NAME = "super";
 
+    @Override
     public void execute(Environment env,
                         Map params, TemplateModel[] loopVars,
                         TemplateDirectiveBody body) throws TemplateException, IOException {

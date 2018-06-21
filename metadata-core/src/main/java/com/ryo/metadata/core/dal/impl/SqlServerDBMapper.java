@@ -6,7 +6,9 @@ import com.ryo.metadata.core.util.vo.JdbcVo;
 /**
  * SQL Server 数据库访问层
  * [](http://www.cnblogs.com/songxingzhu/p/5849029.html)
- * Created by bbhou on 2017/7/31.
+ *
+ * @author bbhou
+ * @date 2017/7/31
  */
 public class SqlServerDBMapper extends AbstractDBMapper {
 
