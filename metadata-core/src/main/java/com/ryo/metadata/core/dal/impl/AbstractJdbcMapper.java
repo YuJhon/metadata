@@ -7,6 +7,7 @@ import com.ryo.metadata.core.domain.MetaField;
 import com.ryo.metadata.core.domain.MetaModel;
 import com.ryo.metadata.core.util.CoreSqlPathUtil;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.logging.log4j.LogManager;
@@ -157,6 +158,9 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
             Statement statement = connection.createStatement();
 
             for(String sql : stringList) {
+                if(StringUtils.isBlank(sql)) {
+                    continue;
+                }
                 statement.addBatch(sql);
                 LOGGER.debug(sql);
             }
