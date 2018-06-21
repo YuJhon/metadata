@@ -35,7 +35,7 @@ public class SqlServerJdbcImpl implements IJdbc {
     @Override
     public void execute(String host, String port, String database, String username, String password) throws Exception {
         JdbcVo jdbcVo = buildSqlServerVo(host, port, database, username, password);
-        DBService dbService = SqlServerDBService.getInstance(jdbcVo);
+        DBService dbService = new SqlServerDBService(jdbcVo);
         dbService.execute();
     }
 

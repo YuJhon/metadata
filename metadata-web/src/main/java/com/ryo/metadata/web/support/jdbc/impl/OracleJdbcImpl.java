@@ -43,7 +43,7 @@ public class OracleJdbcImpl implements IJdbc {
     public void execute(String host, String port, String database, String username, String password)
             throws Exception {
         JdbcVo jdbcVo = buildOracleJdbcVo(host, port, database, username, password);
-        DBService dbService = OracleDBService.getInstance(jdbcVo);
+        DBService dbService = new OracleDBService(jdbcVo);
         dbService.execute();
     }
 

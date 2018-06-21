@@ -1,5 +1,7 @@
 package com.ryo.metadata.test.dal;
 
+import com.ryo.metadata.core.constant.DriverNameConstant;
+
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.SQLExec;
 import org.apache.tools.ant.types.EnumeratedAttribute;
@@ -52,7 +54,32 @@ public class AntExecTest {
         sqlExec.execute();
     }
 
+    @Test
+    public void oracleTest() {
+        SQLExec sqlExec = new SQLExec();
 
+        //设置数据库参数
+        sqlExec.setDriver(DriverNameConstant.ORACLE);
+        sqlExec.setUrl("jdbc:oracle:thin:@127.0.0.1:49161:XE");
+        sqlExec.setUserid("system");
+        sqlExec.setPassword("123456");
+
+        //要执行的脚本
+        sqlExec.setSrc(new File("/Users/houbinbin/code/_github/metadata/metadata-core/src/main/resources/coreOracle.sql"));
+
+        //如果有出错的语句继续执行.
+        sqlExec.setOnerror((SQLExec.OnError) (EnumeratedAttribute.getInstance(SQLExec.OnError.class, "abort")));
+        sqlExec.setPrint(true);
+        sqlExec.setProject(new Project()); // 要指定这个属性，不然会出错
+        sqlExec.execute();
+    }
+
+
+//    jdbc.driverClassName=oracle.jdbc.OracleDriver
+//    jdbc.url=jdbc:oracle:thin:@127.0.0.1:49161:XE
+//    jdbc.username=system
+//    jdbc.password=123456
+//
 //    jdbc.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
 //    jdbc.url=jdbc:sqlserver://localhost:1433;DatabaseName=doc
 //    jdbc.username=sa

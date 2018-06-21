@@ -25,9 +25,10 @@ public class MybatisSqlExecUtil {
 
     static {
         try {
-            Class.forName(DriverNameConstant.MYSQL).newInstance();
             //TODO: 这个真实部署到 tomcat 会报错！
+            Class.forName(DriverNameConstant.MYSQL).newInstance();
             Class.forName(DriverNameConstant.SQL_SERVER).newInstance();
+            Class.forName(DriverNameConstant.ORACLE).newInstance();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
             LOGGER.error("Init jdbc driver meet ex: " + e, e);
         }

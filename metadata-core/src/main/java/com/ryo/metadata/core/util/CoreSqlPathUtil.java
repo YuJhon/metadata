@@ -74,4 +74,8 @@ public class CoreSqlPathUtil {
         return getInputStream(SQL_SERVER_PATH);
     }
 
+    public static InputStream getOracleInputStream() throws Exception {
+        return getInputStream(ORACLE_PATH);
+    }
+
 }

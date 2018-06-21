@@ -95,7 +95,7 @@ public abstract class AbstractDBService implements DBService {
     @Override
     public void execute() throws Exception {
 
-        initMetadataTables();
+//        initMetadataTables();
 
         createMetaModelData();
 

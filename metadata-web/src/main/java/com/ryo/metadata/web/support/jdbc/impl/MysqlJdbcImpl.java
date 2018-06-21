@@ -35,7 +35,7 @@ public class MysqlJdbcImpl implements IJdbc {
     @Override
     public void execute(String host, String port, String database, String username, String password) throws Exception {
         JdbcVo jdbcVo = buildMySqlJdbcVo(host, port, database, username, password);
-        DBService dbService = MySqlDBService.getInstance(jdbcVo);
+        DBService dbService = new MySqlDBService(jdbcVo);
         dbService.execute();
     }
 

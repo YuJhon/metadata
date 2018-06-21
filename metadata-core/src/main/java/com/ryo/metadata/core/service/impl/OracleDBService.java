@@ -58,7 +58,7 @@ public class OracleDBService extends AbstractDBService {
     @Override
     protected void createMetadataTables() throws Exception {
         LOGGER.info("============================== createMetadataTables START");
-        MybatisSqlExecUtil.execute(this.jdbcVo, CoreSqlPathUtil.getSqlServerInputStream());
+        MybatisSqlExecUtil.execute(this.jdbcVo, CoreSqlPathUtil.getOracleInputStream());
         LOGGER.info("============================== createMetadataTables END");
     }
 
