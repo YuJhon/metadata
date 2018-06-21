@@ -36,6 +36,8 @@ echo "3. MODIFY ${release_version} TO ${snapshot_new_version} DONE."
 
 echo "============================= BRANCH RE-CREATE END..."
 
+echo "============================= BRANCH LIST ============================="
+git branch -a
 
 # 使用方式：
 # 注意：本脚本用于删除分支，谨慎使用!
