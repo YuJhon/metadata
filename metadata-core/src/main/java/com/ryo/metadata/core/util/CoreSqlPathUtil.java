@@ -1,8 +1,5 @@
 package com.ryo.metadata.core.util;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,30 +14,13 @@ import java.net.URL;
  */
 public class CoreSqlPathUtil {
 
-    private static final Logger LOGGER = LogManager.getLogger(CoreSqlPathUtil.class);
-
-    /**
-     * MySQL 文件路径
-     */
-    private static final String MYSQL_PATH = "coreMysql.sql";
-
-    /**
-     * SQL-SERVER 文件路径
-     */
-    private static final String SQL_SERVER_PATH = "coreSqlServer.sql";
-
-    /**
-     * ORACLE 文件路径
-     */
-    private static final String ORACLE_PATH = "coreOracle.sql";
-
     /**
      * 获取文件对应输入流
      *
      * @param filePath 文件路径
      * @return
      */
-    private static InputStream getInputStream(final String filePath) throws Exception {
+    public static InputStream getInputStream(final String filePath) throws Exception {
         InputStream inputStream = null;
 
         try {
@@ -63,19 +43,6 @@ public class CoreSqlPathUtil {
         }
 
         return inputStream;
-    }
-
-
-    public static InputStream getMysqlInputStream() throws Exception {
-        return getInputStream(MYSQL_PATH);
-    }
-
-    public static InputStream getSqlServerInputStream() throws Exception {
-        return getInputStream(SQL_SERVER_PATH);
-    }
-
-    public static InputStream getOracleInputStream() throws Exception {
-        return getInputStream(ORACLE_PATH);
     }
 
 }

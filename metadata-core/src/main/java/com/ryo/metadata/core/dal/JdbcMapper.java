@@ -1,6 +1,7 @@
 package com.ryo.metadata.core.dal;
 
-import com.ryo.metadata.core.util.singleton.Singleton;
+import com.ryo.metadata.core.domain.MetaField;
+import com.ryo.metadata.core.domain.MetaModel;
 
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ import java.util.List;
  * @author bbhou
  * @date 2017/8/1
  */
-public interface JdbcMapper extends Singleton {
+public interface JdbcMapper {
 
     /**
      * 执行查询语句
@@ -44,9 +45,26 @@ public interface JdbcMapper extends Singleton {
 
     /**
      * 数据库元数据信息
-     * @throws sql exception
      * @return
      */
     DatabaseMetaData metaData() throws SQLException;
+
+    /**
+     * 查询所有得标信息
+     * @return
+     */
+    List<MetaModel> selectAllTables();
+
+    /**
+     * 查询当前表的所有字段信息
+     * @param tableName 表名称
+     * @return
+     */
+    List<MetaField> selectAllFields(String tableName);
+
+    /**
+     * 创建元数据表
+     */
+    void createMetadataTables();
 
 }

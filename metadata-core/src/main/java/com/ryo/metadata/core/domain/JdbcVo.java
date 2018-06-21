@@ -1,7 +1,12 @@
-package com.ryo.metadata.core.util.vo;
+/*
+ * Copyright (c)  2018. houbinbin Inc.
+ * metadata All rights reserved.
+ */
+
+package com.ryo.metadata.core.domain;
 
 /**
- *
+ * JDBC 传输
  * @author bbhou
  * @date 2017/8/1
  */

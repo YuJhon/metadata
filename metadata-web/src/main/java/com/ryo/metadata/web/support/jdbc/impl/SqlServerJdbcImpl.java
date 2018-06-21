@@ -6,13 +6,13 @@
 package com.ryo.metadata.web.support.jdbc.impl;
 
 import com.ryo.metadata.core.constant.DriverNameConstant;
-import com.ryo.metadata.core.service.DBService;
-import com.ryo.metadata.core.service.impl.SqlServerDBService;
-import com.ryo.metadata.core.util.vo.JdbcVo;
+import com.ryo.metadata.core.domain.JdbcVo;
+import com.ryo.metadata.core.service.IDatabaseService;
 import com.ryo.metadata.web.support.jdbc.IJdbc;
 import com.ryo.metadata.web.support.jdbc.JdbcContainer;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.ryo.metadata.web.support.jdbc.impl.SqlServerJdbcImpl.DATABASE;
@@ -32,11 +32,13 @@ public class SqlServerJdbcImpl implements IJdbc {
 
     static final String DATABASE = "sql-server";
 
+    @Autowired
+    private IDatabaseService databaseService;
+
     @Override
     public void execute(String host, String port, String database, String username, String password) throws Exception {
         JdbcVo jdbcVo = buildSqlServerVo(host, port, database, username, password);
-        DBService dbService = new SqlServerDBService(jdbcVo);
-        dbService.execute();
+        databaseService.executeSqlServer(jdbcVo);
     }
 
     /**

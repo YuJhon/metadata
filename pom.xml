@@ -7,7 +7,7 @@
     <groupId>com.ryo</groupId>
     <artifactId>metadata</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1</version>
+    <version>2.0.0</version>
     <modules>
         <module>metadata-core</module>
         <module>metadata-test</module>

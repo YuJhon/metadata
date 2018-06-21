@@ -5,6 +5,7 @@
 
     <import resource="applicationContext-web.xml"/>
     <import resource="applicationContext-mvc.xml"/>
+    <import resource="applicationContext-core.xml"/>
 
     <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">

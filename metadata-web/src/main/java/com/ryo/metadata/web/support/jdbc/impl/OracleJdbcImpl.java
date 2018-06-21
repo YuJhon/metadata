@@ -6,14 +6,14 @@
 package com.ryo.metadata.web.support.jdbc.impl;
 
 import com.ryo.metadata.core.constant.DriverNameConstant;
-import com.ryo.metadata.core.service.DBService;
-import com.ryo.metadata.core.service.impl.OracleDBService;
-import com.ryo.metadata.core.util.vo.JdbcVo;
+import com.ryo.metadata.core.domain.JdbcVo;
+import com.ryo.metadata.core.service.IDatabaseService;
 import com.ryo.metadata.web.support.jdbc.IJdbc;
 import com.ryo.metadata.web.support.jdbc.JdbcContainer;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.ryo.metadata.web.support.jdbc.impl.OracleJdbcImpl.DATABASE;
@@ -38,13 +38,14 @@ public class OracleJdbcImpl implements IJdbc {
 
     static final String DATABASE = "oracle";
 
+    @Autowired
+    private IDatabaseService databaseService;
 
     @Override
     public void execute(String host, String port, String database, String username, String password)
             throws Exception {
         JdbcVo jdbcVo = buildOracleJdbcVo(host, port, database, username, password);
-        DBService dbService = new OracleDBService(jdbcVo);
-        dbService.execute();
+        databaseService.executeOracle(jdbcVo);
     }
 
     /**
@@ -57,8 +58,8 @@ public class OracleJdbcImpl implements IJdbc {
      * @return 链接信息
      */
     private JdbcVo buildOracleJdbcVo(final String host, final String port,
-                                    final String database,
-                                    final String username, final String password) {
+                                     final String database,
+                                     final String username, final String password) {
         final String hostActual = StringUtils.defaultIfEmpty(host, "127.0.0.1");
         final String portActual = StringUtils.defaultIfEmpty(port, "49161");
         final String serviceActual = StringUtils.defaultIfEmpty(database, "XE");

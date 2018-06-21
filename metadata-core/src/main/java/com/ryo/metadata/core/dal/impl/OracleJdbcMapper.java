@@ -5,14 +5,12 @@
 
 package com.ryo.metadata.core.dal.impl;
 
-import com.ryo.metadata.core.util.vo.JdbcVo;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import com.ryo.metadata.core.constant.DriverNameConstant;
+import com.ryo.metadata.core.domain.JdbcVo;
 
 /**
  * oracle jdbcMapper
+ *
  * @author bbhou
  * @date 2017/8/1
  */
@@ -23,26 +21,28 @@ public class OracleJdbcMapper extends AbstractJdbcMapper {
     }
 
     @Override
-    protected Connection getConnection() {
-        try {
-            Class.forName(jdbcVo.getDriverClassName());
-            return DriverManager.getConnection(jdbcVo.getUrl(),
-                    jdbcVo.getUsername(),
-                    jdbcVo.getPassword());
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+    protected String getScriptPath() {
+        return "coreOracle.sql";
     }
 
-
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Class.forName("oracle.jdbc.OracleDriver");
-        DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:49161:XE","system","123456");
+    @Override
+    protected String driverName() {
+        return DriverNameConstant.ORACLE;
     }
 
-//    jdbc.driverClassName=oracle.jdbc.OracleDriver
-//    jdbc.url=jdbc:oracle:thin:@127.0.0.1:49161:XE
-//    jdbc.username=system
-//    jdbc.password=123456
+    @Override
+    protected String selectAllTablesSql() {
+        return "select a.TABLE_NAME,b.COMMENTS from user_tables a,user_tab_comments b " +
+                "WHERE a.TABLE_NAME=b.TABLE_NAME order by TABLE_NAME";
+    }
+
+    @Override
+    protected String selectAllFieldsSql(String tableName) {
+        final String database = super.getDatabaseName();
+        return "SELECT '" + database + "', col.column_name, col.nullable, col.data_type, comment.comments" +
+                "FROM user_tab_columns col LEFT JOIN all_col_comments comment " +
+                "ON col.column_name=comment.column_name" +
+                "WHERE table_name='" + tableName + "'";
+    }
+
 }

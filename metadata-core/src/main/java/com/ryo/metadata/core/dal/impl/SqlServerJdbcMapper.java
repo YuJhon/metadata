@@ -1,13 +1,9 @@
 package com.ryo.metadata.core.dal.impl;
 
-import com.ryo.metadata.core.util.vo.JdbcVo;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import com.ryo.metadata.core.constant.DriverNameConstant;
+import com.ryo.metadata.core.domain.JdbcVo;
 
 /**
- *
  * @author bbhou
  * @date 2017/8/1
  */
@@ -18,15 +14,29 @@ public class SqlServerJdbcMapper extends AbstractJdbcMapper {
     }
 
     @Override
-    protected Connection getConnection() {
-        try {
-            Class.forName(jdbcVo.getDriverClassName());
-            return DriverManager.getConnection(jdbcVo.getUrl(),
-                    jdbcVo.getUsername(),
-                    jdbcVo.getPassword());
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+    protected String getScriptPath() {
+        return "coreSqlServer.sql";
     }
+
+    @Override
+    protected String driverName() {
+        return DriverNameConstant.ORACLE;
+    }
+
+    @Override
+    protected String selectAllTablesSql() {
+        return "SELECT _obj.Name, convert(varchar(100), _ext.value) FROM SysObjects AS _obj " +
+                "left join sys.extended_properties AS _ext " +
+                "on _obj.id = _ext.major_id and _ext.minor_id=0" +
+                "Where _obj.XType='U'";
+    }
+
+    @Override
+    protected String selectAllFieldsSql(String tableName) {
+        return "SELECT _col.TABLE_SCHEMA, _col.COLUMN_NAME, _col.IS_NULLABLE, _col.DATA_TYPE, convert(varchar(100), _ext.value) " +
+                "FROM SysObjects AS _sys LEFT JOIN sys.extended_properties AS _ext " +
+                "ON _sys.id=_ext.major_id, INFORMATION_SCHEMA.columns AS _col WHERE _col.TABLE_NAME='"+tableName+"' and _sys.name='"+tableName+"' " +
+                "AND _col.ORDINAL_POSITION=_ext.minor_id";
+    }
+
 }
