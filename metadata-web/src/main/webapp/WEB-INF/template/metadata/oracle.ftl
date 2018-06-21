@@ -24,9 +24,16 @@
     </div>
 
     <div class="form-group">
+        <label for="port-input" class="col-xs-2 control-label">Service</label>
+        <div class="col-xs-8">
+            <input type="text" class="form-control" id="service-input" placeholder="XE">
+        </div>
+    </div>
+
+    <div class="form-group">
         <label for="username-input" class="col-xs-2 control-label">Username</label>
         <div class="col-xs-8">
-            <input type="text" class="form-control" id="username-input" placeholder="XE">
+            <input type="text" class="form-control" id="username-input" placeholder="system">
         </div>
     </div>
 
@@ -59,6 +66,7 @@
             var port = $("#port-input").val();
             var username = $("#username-input").val();
             var password = $("#password-input").val();
+            var service = $("#service-input").val();
 
             alert("开始执行 ajax!");
             $.ajax({
@@ -68,6 +76,7 @@
                 data: {
                     host: host,
                     port: port,
+                    database: service,
                     username: username,
                     password: password
                 },
