@@ -36,7 +36,6 @@ import java.util.List;
 @Service
 public class DatabaseServiceImpl implements IDatabaseService {
 
-
     @Override
     public void executeMysql(JdbcVo jdbcVo) {
         final JdbcMapper mysql = new MySqlJdbcMapper(jdbcVo);

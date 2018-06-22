@@ -6,6 +6,7 @@
 package com.ryo.metadata.core.dal.impl;
 
 import com.ryo.metadata.core.constant.DriverNameConstant;
+import com.ryo.metadata.core.constant.PathConstant;
 import com.ryo.metadata.core.domain.JdbcVo;
 
 /**
@@ -22,7 +23,7 @@ public class OracleJdbcMapper extends AbstractJdbcMapper {
 
     @Override
     protected String getScriptPath() {
-        return "coreOracle.sql";
+        return PathConstant.Sql.ORACLE;
     }
 
     @Override

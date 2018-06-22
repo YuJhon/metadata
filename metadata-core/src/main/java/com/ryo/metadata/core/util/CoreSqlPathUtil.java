@@ -18,7 +18,7 @@ public class CoreSqlPathUtil {
      * 获取文件对应输入流
      *
      * @param filePath 文件路径
-     * @return
+     * @return input stream
      */
     public static InputStream getInputStream(final String filePath) throws Exception {
         InputStream inputStream = null;

@@ -1,6 +1,7 @@
 package com.ryo.metadata.core.dal.impl;
 
 import com.ryo.metadata.core.constant.DriverNameConstant;
+import com.ryo.metadata.core.constant.PathConstant;
 import com.ryo.metadata.core.domain.JdbcVo;
 
 /**
@@ -15,7 +16,7 @@ public class SqlServerJdbcMapper extends AbstractJdbcMapper {
 
     @Override
     protected String getScriptPath() {
-        return "coreSqlServer.sql";
+        return PathConstant.Sql.SQL_SERVER;
     }
 
     @Override
