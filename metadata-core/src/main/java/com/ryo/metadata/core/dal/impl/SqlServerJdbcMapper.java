@@ -1,8 +1,10 @@
 package com.ryo.metadata.core.dal.impl;
 
+import com.ryo.medata.util.util.StringUtil;
 import com.ryo.metadata.core.constant.DriverNameConstant;
 import com.ryo.metadata.core.constant.PathConstant;
 import com.ryo.metadata.core.domain.JdbcVo;
+import com.ryo.metadata.core.util.KeywordUtil;
 
 /**
  * @author bbhou
@@ -12,6 +14,14 @@ public class SqlServerJdbcMapper extends AbstractJdbcMapper {
 
     public SqlServerJdbcMapper(JdbcVo jdbcVo) {
         super(jdbcVo);
+    }
+
+    @Override
+    public String getColumn(String column) {
+        if(KeywordUtil.isOracleKeyword(column)) {
+            return "["+column+"]";
+        }
+        return column;
     }
 
     @Override

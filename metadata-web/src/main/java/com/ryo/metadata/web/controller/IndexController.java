@@ -1,6 +1,5 @@
 package com.ryo.metadata.web.controller;
 
-import com.ryo.metadata.core.util.CoreSqlPathUtil;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

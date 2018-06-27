@@ -13,6 +13,11 @@ public class MetaField {
     /**
      * 唯一标识
      */
+    private long id;
+
+    /**
+     * 唯一标识
+     */
     private String uid;
 
     /**
@@ -54,6 +59,14 @@ public class MetaField {
      * 更新时间
      */
     private Date updateTime;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getUid() {
         return uid;
@@ -127,18 +140,4 @@ public class MetaField {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public String toString() {
-        return "MetaField{" +
-                "uid='" + uid + '\'' +
-                ", name='" + name + '\'' +
-                ", alias='" + alias + '\'' +
-                ", dbObjectName='" + dbObjectName + '\'' +
-                ", description='" + description + '\'' +
-                ", dataType='" + dataType + '\'' +
-                ", isNullable=" + isNullable +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
-    }
 }

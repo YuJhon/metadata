@@ -25,16 +25,16 @@ end;
 /*==============================================================*/
 create table meta_field
 (
-  ID           int           not null primary key,
-  "uid"          varchar(36),
-  name          varchar(125),
+  ID           int not null,
+  "UID"          varchar(36),
+  "NAME"          varchar(125),
   dbObjectName        varchar(64),
-  "alias" varchar(255),
+  "ALIAS" varchar(255),
   description varchar(255),
   isNullable        NUMBER(1),
   dataType          varchar(36),
-  createTime   date,
-  updateTime   date
+  createTime   CHAR(32),
+  updateTime   CHAR(32)
 )
 /
 
@@ -42,11 +42,11 @@ comment on column meta_field.ID
 is '物理主键'
 /
 
-comment on column meta_field."uid"
+comment on column meta_field."UID"
 is '唯一标识'
 /
 
-comment on column meta_field.name
+comment on column meta_field."NAME"
 is '名称'
 /
 
@@ -54,7 +54,7 @@ comment on column meta_field.dbObjectName
 is '数据库表名'
 /
 
-comment on column meta_field."alias"
+comment on column meta_field."ALIAS"
 is '别名'
 /
 
@@ -83,28 +83,28 @@ is '更新时间'
 /*==============================================================*/
 create table meta_model
 (
-   ID                   int not null primary key,
-   "uid"                  varchar(36),
-   name                 varchar(125),
+   ID                   int not null,
+   "UID"                  varchar(36),
+   "NAME"                 varchar(125),
    dbObjectName         varchar(64),
-   "alias"                varchar(125),
+   "ALIAS"                varchar(125),
    description          varchar(255),
    category             varchar(36),
    isVisible            NUMBER(1),
    isEditable           NUMBER(1),
-   createTime           date,
-   updateTime           date
+   createTime           CHAR(32),
+   updateTime           CHAR(32)
 )/
 
 comment on column meta_model.ID
 is '物理主键'
 /
 
-comment on column meta_model."uid"
+comment on column meta_model."UID"
 is '唯一标识'
 /
 
-comment on column meta_model.name
+comment on column meta_model."NAME"
 is '名称'
 /
 
@@ -112,7 +112,7 @@ comment on column meta_model.dbObjectName
 is '数据库表名'
 /
 
-comment on column meta_model."alias"
+comment on column meta_model."ALIAS"
 is '别名'
 /
 

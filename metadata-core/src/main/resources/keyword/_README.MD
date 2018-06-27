@@ -2,6 +2,8 @@
 
 ## oracle 
 
+select * from v$reserved_words order by keyword asc;
+
 ```
 "keyword"
 ```

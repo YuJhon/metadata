@@ -38,4 +38,28 @@ public class Keyword {
     public void setReserved(boolean reserved) {
         this.reserved = reserved;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Keyword keyword1 = (Keyword) o;
+
+        if (reserved != keyword1.reserved) {
+            return false;
+        }
+        return keyword != null ? keyword.equals(keyword1.keyword) : keyword1.keyword == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = keyword != null ? keyword.hashCode() : 0;
+        result = 31 * result + (reserved ? 1 : 0);
+        return result;
+    }
 }

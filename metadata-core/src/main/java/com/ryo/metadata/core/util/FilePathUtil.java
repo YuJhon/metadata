@@ -1,5 +1,7 @@
 package com.ryo.metadata.core.util;
 
+import com.ryo.metadata.core.exception.MetadataRuntimeException;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +14,7 @@ import java.net.URL;
  * @author bbhou
  * @date 2017/9/26
  */
-public class CoreSqlPathUtil {
+public class FilePathUtil {
 
     /**
      * 获取文件对应输入流
@@ -20,7 +22,7 @@ public class CoreSqlPathUtil {
      * @param filePath 文件路径
      * @return input stream
      */
-    public static InputStream getInputStream(final String filePath) throws Exception {
+    public static InputStream getInputStream(final String filePath) {
         InputStream inputStream = null;
 
         try {
@@ -31,15 +33,15 @@ public class CoreSqlPathUtil {
             } catch (Exception localException2) {
                 ClassLoader localClassLoader = Thread.currentThread().getContextClassLoader();
                 if (localClassLoader == null) {
-                    localClassLoader = CoreSqlPathUtil.class.getClassLoader();
+                    localClassLoader = FilePathUtil.class.getClassLoader();
                 }
                 inputStream = localClassLoader.getResourceAsStream(filePath);
                 if (inputStream == null) {
-                    throw new Exception("Could not find file: " + filePath);
+                    throw new MetadataRuntimeException("Could not find file: " + filePath);
                 }
             }
         } catch (IOException localIOException1) {
-            throw new Exception(localIOException1);
+            throw new MetadataRuntimeException(localIOException1);
         }
 
         return inputStream;

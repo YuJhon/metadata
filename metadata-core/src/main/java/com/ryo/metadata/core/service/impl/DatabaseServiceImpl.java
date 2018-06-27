@@ -5,7 +5,6 @@
 
 package com.ryo.metadata.core.service.impl;
 
-import com.ryo.medata.util.util.DBSqlUtil;
 import com.ryo.metadata.core.constant.EntityConstant;
 import com.ryo.metadata.core.dal.JdbcMapper;
 import com.ryo.metadata.core.dal.impl.MySqlJdbcMapper;
@@ -16,6 +15,7 @@ import com.ryo.metadata.core.domain.MetaField;
 import com.ryo.metadata.core.domain.MetaModel;
 import com.ryo.metadata.core.exception.MetadataRuntimeException;
 import com.ryo.metadata.core.service.IDatabaseService;
+import com.ryo.metadata.core.util.DatabaseSqlUtil;
 
 import org.springframework.stereotype.Service;
 
@@ -78,10 +78,10 @@ public class DatabaseServiceImpl implements IDatabaseService {
         List<MetaModel> metaModelList = jdbcMapper.selectAllTables();
 
         List<String> sqlList = new LinkedList<>();
-        String truncateTableSql = DBSqlUtil.truncateTable(EntityConstant.META_MODEL);
+        String truncateTableSql = DatabaseSqlUtil.truncateTable(EntityConstant.META_MODEL);
         sqlList.add(truncateTableSql);
         for (MetaModel metaModel : metaModelList) {
-            String insertSql = DBSqlUtil.insert(EntityConstant.META_MODEL, metaModel, null);
+            String insertSql = DatabaseSqlUtil.insert(jdbcMapper, EntityConstant.META_MODEL, metaModel, null);
             sqlList.add(insertSql);
         }
 
@@ -96,13 +96,14 @@ public class DatabaseServiceImpl implements IDatabaseService {
     private void createMetaFieldData(JdbcMapper jdbcMapper) throws IllegalAccessException, SQLException {
         List<MetaModel> metaModelList = jdbcMapper.selectAllTables();
         List<String> sqlList = new LinkedList<>();
-        String truncateTableSql = DBSqlUtil.truncateTable(EntityConstant.META_FIELD);
+        String truncateTableSql = DatabaseSqlUtil.truncateTable(EntityConstant.META_FIELD);
         sqlList.add(truncateTableSql);
         for (MetaModel model : metaModelList) {
             String name = model.getName();
             List<MetaField> metaFieldList = jdbcMapper.selectAllFields(name);
             for (MetaField metaField : metaFieldList) {
-                String insertSql = DBSqlUtil.insert(EntityConstant.META_FIELD, metaField, null);
+                String insertSql = DatabaseSqlUtil.insert(jdbcMapper, EntityConstant.META_FIELD,
+                        metaField, null);
                 sqlList.add(insertSql);
             }
         }

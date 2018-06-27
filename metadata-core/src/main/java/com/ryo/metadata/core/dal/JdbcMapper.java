@@ -16,6 +16,14 @@ import java.util.List;
 public interface JdbcMapper {
 
     /**
+     * 获取列的信息
+     * 1. 对关键字做特殊处理
+     * @param column 列名称
+     * @return 处理完的列信息
+     */
+    String getColumn(final String column);
+
+    /**
      * 执行查询语句
      * @param querySql
      * @return
@@ -38,7 +46,9 @@ public interface JdbcMapper {
      * 执行SQL
      * 1.包含事物处理
      * 2. sql 本身包含多条sql。同时成功或者失败。
+     *
      * @param stringList 入参列表
+     * @throws SQLException java 异常
      */
     void executeBatchTx(List<String> stringList) throws SQLException;
 

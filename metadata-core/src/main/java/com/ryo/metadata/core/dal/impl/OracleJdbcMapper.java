@@ -5,9 +5,11 @@
 
 package com.ryo.metadata.core.dal.impl;
 
+import com.ryo.medata.util.util.StringUtil;
 import com.ryo.metadata.core.constant.DriverNameConstant;
 import com.ryo.metadata.core.constant.PathConstant;
 import com.ryo.metadata.core.domain.JdbcVo;
+import com.ryo.metadata.core.util.KeywordUtil;
 
 /**
  * oracle jdbcMapper
@@ -19,6 +21,16 @@ public class OracleJdbcMapper extends AbstractJdbcMapper {
 
     public OracleJdbcMapper(JdbcVo jdbcVo) {
         super(jdbcVo);
+    }
+
+    @Override
+    public String getColumn(String column) {
+        //oracle 全部大写
+        String upper = column.toUpperCase();
+        if(KeywordUtil.isOracleKeyword(upper)) {
+            return StringUtil.bothPad(upper, "\"");
+        }
+        return upper;
     }
 
     @Override

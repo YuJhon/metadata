@@ -13,7 +13,6 @@ package com.ryo.metadata.core.constant;
  */
 public interface PathConstant {
 
-
     /**
      * 脚本
      */
@@ -21,17 +20,17 @@ public interface PathConstant {
         /**
          * mysql
          */
-         String MYSQL = "sql/coreMysql.sql";
+         String MYSQL = "sql/mysql.sql";
 
         /**
          * oracle
          */
-         String ORACLE = "sql/coreOracle.sql";
+         String ORACLE = "sql/oracle.sql";
 
         /**
          * sql server
          */
-         String SQL_SERVER = "sql/coreSqlServer.sql";
+         String SQL_SERVER = "sql/sqlServer.sql";
     }
 
     /**
@@ -53,9 +52,5 @@ public interface PathConstant {
          */
         String SQL_SERVER = "keyword/sqlServer.txt";
     }
-
-
-
-
 
 }

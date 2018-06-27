@@ -13,6 +13,11 @@ public class MetaModel {
     /**
      * 唯一标识
      */
+    private long id;
+
+    /**
+     * 唯一标识
+     */
     private String uid;
 
     /**
@@ -59,6 +64,14 @@ public class MetaModel {
      * 修改时间
      */
     private Date updateTime;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getUid() {
         return uid;
@@ -140,19 +153,4 @@ public class MetaModel {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public String toString() {
-        return "MetaModel{" +
-                "uid='" + uid + '\'' +
-                ", name='" + name + '\'' +
-                ", alias='" + alias + '\'' +
-                ", dbObjectName='" + dbObjectName + '\'' +
-                ", description='" + description + '\'' +
-                ", category='" + category + '\'' +
-                ", isVisible=" + isVisible +
-                ", isEditable=" + isEditable +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
-    }
 }

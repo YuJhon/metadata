@@ -1,9 +1,10 @@
 package com.ryo.metadata.core.dal.impl;
 
+import com.ryo.medata.util.util.StringUtil;
 import com.ryo.metadata.core.constant.DriverNameConstant;
 import com.ryo.metadata.core.constant.PathConstant;
 import com.ryo.metadata.core.domain.JdbcVo;
-
+import com.ryo.metadata.core.util.KeywordUtil;
 
 
 /**
@@ -15,6 +16,14 @@ public class MySqlJdbcMapper extends AbstractJdbcMapper {
 
     public MySqlJdbcMapper(JdbcVo jdbcVo) {
         super(jdbcVo);
+    }
+
+    @Override
+    public String getColumn(String column) {
+        if(KeywordUtil.isMysqlKeyword(column)) {
+            return StringUtil.bothPad(column, "`");
+        }
+        return column;
     }
 
     @Override

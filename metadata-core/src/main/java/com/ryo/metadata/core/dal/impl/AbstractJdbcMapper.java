@@ -1,11 +1,12 @@
 package com.ryo.metadata.core.dal.impl;
 
 import com.ryo.medata.util.util.IDUtil;
+import com.ryo.medata.util.util.id.IdWorker;
 import com.ryo.metadata.core.dal.JdbcMapper;
 import com.ryo.metadata.core.domain.JdbcVo;
 import com.ryo.metadata.core.domain.MetaField;
 import com.ryo.metadata.core.domain.MetaModel;
-import com.ryo.metadata.core.util.CoreSqlPathUtil;
+import com.ryo.metadata.core.util.FilePathUtil;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.io.Resources;
@@ -51,28 +52,28 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
 
     /**
      * 获取脚本路径
-     * @return
+     * @return 脚本路径
      */
     protected abstract String getScriptPath();
 
     /**
      * 获取驱动名称
-     * @return
+     * @return 驱动名称
      */
     protected abstract String driverName();
 
     /**
      * 获取所有表信息的SQL
      *
-     * @return
+     * @return SQL
      */
     protected abstract String selectAllTablesSql();
 
     /**
-     * 获取所有字段信息的SQL\
+     * 获取所有字段信息的SQL
      *
      * @param tableName 表名称
-     * @return
+     * @return 表名称
      */
     protected abstract String selectAllFieldsSql(String tableName);
 
@@ -195,6 +196,7 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
                 //注释
                 String comment = resultSet.getString(2);
                 MetaModel metaModel = new MetaModel();
+                metaModel.setId(IdWorker.nextId());
                 metaModel.setUid(uid);
                 metaModel.setName(tableName);
                 metaModel.setDescription(comment);
@@ -213,6 +215,7 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
     public List<MetaField> selectAllFields(String tableName) {
         List<MetaField> metaFieldList = new LinkedList<>();
         String sql = selectAllFieldsSql(tableName);
+        LOGGER.debug("sql: " + sql);
         //指定需要的列信息
         ResultSet resultSet = this.query(sql);
         try {
@@ -225,6 +228,7 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
                 String comment = resultSet.getString(5);
 
                 MetaField metaField = new MetaField();
+                metaField.setId(IdWorker.nextId());
                 metaField.setUid(uid);
                 metaField.setName(columnName);
                 metaField.setDataType(dataType);
@@ -250,7 +254,7 @@ public abstract class AbstractJdbcMapper implements JdbcMapper {
         final String password = jdbcVo.getPassword();
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
-             InputStream inputStream = CoreSqlPathUtil.getInputStream(scriptPath);
+             InputStream inputStream = FilePathUtil.getInputStream(scriptPath);
         ) {
             //TODO: 加在驱动时  前端会直接结束！为什么？
             Reader reader = new InputStreamReader(inputStream);

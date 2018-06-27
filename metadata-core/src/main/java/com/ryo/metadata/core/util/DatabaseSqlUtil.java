@@ -1,12 +1,19 @@
-package com.ryo.medata.util.util;
+/*
+ * Copyright (c)  2018. houbinbin Inc.
+ * metadata All rights reserved.
+ */
+
+package com.ryo.metadata.core.util;
+
+import com.ryo.medata.util.util.DateUtil;
+import com.ryo.medata.util.util.MapUtil;
+import com.ryo.medata.util.util.StringUtil;
+import com.ryo.metadata.core.dal.JdbcMapper;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.Map;
 
@@ -16,9 +23,9 @@ import java.util.Map;
  * @author bbhou
  * @date 2017/8/1
  */
-public class DBSqlUtil {
+public class DatabaseSqlUtil {
 
-    private static final Logger LOGGER = LogManager.getLogger(DBSqlUtil.class);
+    private static final Logger LOGGER = LogManager.getLogger(DatabaseSqlUtil.class);
 
     /**
      * 清空一张表
@@ -34,16 +41,18 @@ public class DBSqlUtil {
      * 1. 将对象直接插入到对应的表中。
      * insert into _table (field_a, field_b) VALES (value_a, value_b);
      * todo: 优化支持多条。
-     * @param tableName
-     * @param object
-     * @param fieldsMapping
-     * @return
+     * @param jdbcMapper jdbc mapper
+     * @param tableName 表名称
+     * @param object 对象信息
+     * @param fieldsMapping 字段信息
+     * @return sql
      */
-    public static String insert(String tableName, Object object, Map<String, String> fieldsMapping) throws IllegalAccessException {
+    public static String insert(JdbcMapper jdbcMapper,
+                                String tableName, Object object, Map<String, String> fieldsMapping) throws IllegalAccessException {
         StringBuilder sqlBuilder = new StringBuilder();
         sqlBuilder.append("insert into ").append(tableName);
-        String fields = buildFields(object, fieldsMapping);
-        sqlBuilder.append(fields);
+        String fields = buildFields(jdbcMapper, object, fieldsMapping);
+        sqlBuilder.append(fields).append(";");
         return sqlBuilder.toString();
     }
 
@@ -72,11 +81,14 @@ public class DBSqlUtil {
 
     /**
      * 构建字段信息
-     * @param object
-     * @param fieldsMapping
-     * @return
+     * @param jdbcMapper jdbc 信息
+     * @param object 对象信息
+     * @param fieldsMapping 字段映射
+     * @return 字段拼接
      */
-    public static String buildFields(Object object, Map<String, String> fieldsMapping) throws IllegalAccessException {
+    public static String buildFields(JdbcMapper jdbcMapper,
+                                     Object object,
+                                     Map<String, String> fieldsMapping) throws IllegalAccessException {
         Class clazz = object.getClass();
         Field[] fields = clazz.getDeclaredFields();
 
@@ -96,7 +108,8 @@ public class DBSqlUtil {
             String tableFieldName = getTableFieldName(fieldName, fieldsMapping);
             String fieldValueStr = getFieldValueStr(fieldType, fieldValue);
 
-            fieldsBuilder.append(tableFieldName).append(", ");
+            String actualFieldName = jdbcMapper.getColumn(tableFieldName);
+            fieldsBuilder.append(actualFieldName).append(", ");
             valuesBuilder.append("'").append(fieldValueStr).append("', ");
         }
 
